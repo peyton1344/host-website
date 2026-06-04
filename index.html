@@ -255,7 +255,7 @@
             <div
                 class="flex flex-wrap justify-center items-stretch gap-6 md:gap-8 lg:gap-10 px-2 sm:px-0 max-w-7xl mx-auto w-full">
                 <!-- App 1: EduSwap -->
-                <a href="#" onclick="switchApp('app-eduswap'); return false;"
+                <a href="#" onclick="switchApp('app-eduswap'); setTimeout(() => navigate('home'), 100); return false;"
                     class="glass-card rounded-[2rem] p-8 md:p-10 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-indigo-500/20 group flex flex-col h-full cursor-pointer relative overflow-hidden w-full sm:w-[calc(50%-1.5rem)] lg:w-[360px] xl:w-[380px] shrink-0">
                     <div
                         class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-indigo-100 to-indigo-50 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-125">
@@ -915,6 +915,11 @@
                     </div>
                 </div>
                 <div class="flex gap-2">
+                    <button onclick="openArtAddModal()"
+                        class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-full font-bold transition-all hover:scale-105 shadow-md shadow-teal-200">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm">ลงขายผลงาน</span>
+                    </button>
                     <button onclick="openArtCart()"
                         class="relative p-2 hover:bg-slate-100 rounded-full text-slate-500 transition-colors">
                         <i data-lucide="shopping-cart" class="w-6 h-6 text-slate-600"></i>
@@ -1070,6 +1075,100 @@
         </div>
     </div>
 
+        <!-- Art Add Product Modal -->
+        <div id="artAddModal" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 modal-overlay" onclick="closeArtAddModal()"></div>
+            <div
+                class="absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto md:-translate-x-1/2 md:-translate-y-1/2 md:w-[560px] bg-white md:rounded-3xl rounded-t-3xl max-h-[90vh] flex flex-col shadow-2xl">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center md:rounded-t-3xl rounded-t-3xl bg-gradient-to-r from-teal-500 to-emerald-500 text-white">
+                    <h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="plus-circle"
+                            class="w-5 h-5"></i> ลงขายผลงานศิลปะ</h2>
+                    <button onclick="closeArtAddModal()" class="text-white/80 hover:text-white"><i
+                            data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <div class="p-6 overflow-y-auto flex-1">
+                    <form id="artAddForm" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">ชื่อผลงาน <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="art-add-name" placeholder="เช่น ภาพวาดสีน้ำทิวทัศน์"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-teal-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">ราคา (บาท) <span
+                                        class="text-red-500">*</span></label>
+                                <input type="number" id="art-add-price" placeholder="0" min="0"
+                                    class="w-full bg-slate-50 border border-slate-200 focus:border-teal-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">หมวดหมู่ <span
+                                        class="text-red-500">*</span></label>
+                                <select id="art-add-category"
+                                    class="w-full bg-slate-50 border border-slate-200 focus:border-teal-500 rounded-xl px-4 py-3 outline-none transition-colors appearance-none cursor-pointer font-medium">
+                                    <option value="ภาพวาดพร้อมส่ง">ภาพวาดพร้อมส่ง</option>
+                                    <option value="รับวาด/สั่งทำ">รับวาด/สั่งทำ</option>
+                                    <option value="แฮนเมด">แฮนเมด</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">ชื่อผู้ขาย/ผู้สร้าง <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="art-add-author" placeholder="เช่น น้องเอม ม.5"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-teal-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">รายละเอียดผลงาน</label>
+                            <textarea id="art-add-desc" rows="3" placeholder="อธิบายผลงาน ขนาด เทคนิค วัสดุที่ใช้..."
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-teal-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">รูปภาพผลงาน</label>
+                            <div class="border-2 border-dashed border-teal-200 rounded-xl p-4 text-center cursor-pointer hover:bg-teal-50/50 transition-colors"
+                                onclick="document.getElementById('art-add-img-input').click()">
+                                <input type="file" id="art-add-img-input" accept="image/*" class="hidden"
+                                    onchange="previewArtAddImage(this)">
+                                <div id="art-add-img-placeholder">
+                                    <i data-lucide="image-plus" class="w-10 h-10 mx-auto text-teal-300 mb-2"></i>
+                                    <p class="text-sm text-slate-500 font-medium">คลิกเพื่ออัปโหลดรูปภาพผลงาน</p>
+                                    <p class="text-xs text-slate-400 mt-1">รองรับ JPG, PNG (แนะนำ 600x600 px)</p>
+                                </div>
+                                <img id="art-add-img-preview" src=""
+                                    class="hidden mx-auto max-h-40 rounded-lg object-contain">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">ประเภทผลงาน</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="art_add_type" value="buy" class="peer sr-only" checked>
+                                    <div
+                                        class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700 transition-all">
+                                        <i data-lucide="shopping-bag" class="w-5 h-5 mx-auto mb-1"></i>
+                                        <span class="text-sm font-bold">ขายพร้อมส่ง</span>
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="art_add_type" value="brief" class="peer sr-only">
+                                    <div
+                                        class="text-center p-3 rounded-xl border-2 border-slate-200 peer-checked:border-teal-500 peer-checked:bg-teal-50 peer-checked:text-teal-700 transition-all">
+                                        <i data-lucide="edit-3" class="w-5 h-5 mx-auto mb-1"></i>
+                                        <span class="text-sm font-bold">รับสั่งทำ (Brief)</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <button type="button" onclick="handleArtAddProduct()"
+                            class="w-full py-4 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white rounded-xl font-bold text-lg shadow-lg shadow-teal-200 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i> ลงขายผลงาน
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ========================================================================= -->
     <!-- HANDMADE APP (CraftyStudent) -->
     <!-- ========================================================================= -->
@@ -1092,6 +1191,11 @@
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
+                    <button onclick="openHandmadeAddModal()"
+                        class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white rounded-full font-bold transition-all hover:scale-105 shadow-md shadow-fuchsia-200">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline text-sm">ลงขายสินค้า</span>
+                    </button>
                     <button onclick="openHandmadeCart()"
                         class="relative p-2 hover:bg-slate-100 rounded-full text-slate-500 transition-colors">
                         <i data-lucide="shopping-cart" class="w-6 h-6 text-slate-600"></i>
@@ -1296,6 +1400,74 @@
                 </div>
                 <div class="p-6 overflow-y-auto" id="hm-orders-list">
                     <!-- Injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Handmade Add Product Modal -->
+        <div id="handmadeAddModal" class="fixed inset-0 z-50 hidden">
+            <div class="absolute inset-0 modal-overlay" onclick="closeHandmadeAddModal()"></div>
+            <div
+                class="absolute bottom-0 left-0 right-0 md:top-1/2 md:left-1/2 md:right-auto md:bottom-auto md:-translate-x-1/2 md:-translate-y-1/2 md:w-[560px] bg-white md:rounded-3xl rounded-t-3xl max-h-[90vh] flex flex-col shadow-2xl">
+                <div class="p-6 border-b border-slate-100 flex justify-between items-center md:rounded-t-3xl rounded-t-3xl bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white">
+                    <h2 class="text-xl font-bold flex items-center gap-2"><i data-lucide="plus-circle"
+                            class="w-5 h-5"></i> ลงขายสินค้าแฮนด์เมด</h2>
+                    <button onclick="closeHandmadeAddModal()" class="text-white/80 hover:text-white"><i
+                            data-lucide="x" class="w-5 h-5"></i></button>
+                </div>
+                <div class="p-6 overflow-y-auto flex-1">
+                    <form id="handmadeAddForm" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">ชื่อสินค้า <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="hm-add-name" placeholder="เช่น กระเป๋าผ้าแคนวาสเพ้นท์มือ"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-fuchsia-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">ราคา (บาท) <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" id="hm-add-price" placeholder="0" min="0"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-fuchsia-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">ชื่อผู้ผลิต (คนทำ) <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="hm-add-maker" placeholder="เช่น น้องมุก ม.4"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-fuchsia-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">จุดเด่นของสินค้า <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text" id="hm-add-highlight" placeholder="เช่น ลวดลายชิ้นเดียวในโลก ซักได้สีไม่ตก"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-fuchsia-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">เรื่องราวและแรงบันดาลใจ <span
+                                    class="text-red-500">*</span></label>
+                            <textarea id="hm-add-story" rows="3" placeholder="เล่าที่มาที่ไปของชิ้นงานนี้..."
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-fuchsia-500 rounded-xl px-4 py-3 outline-none transition-colors font-medium"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">รูปภาพสินค้า</label>
+                            <div class="border-2 border-dashed border-fuchsia-200 rounded-xl p-4 text-center cursor-pointer hover:bg-fuchsia-50/50 transition-colors"
+                                onclick="document.getElementById('hm-add-img-input').click()">
+                                <input type="file" id="hm-add-img-input" accept="image/*" class="hidden"
+                                    onchange="previewHandmadeAddImage(this)">
+                                <div id="hm-add-img-placeholder">
+                                    <i data-lucide="image-plus" class="w-10 h-10 mx-auto text-fuchsia-300 mb-2"></i>
+                                    <p class="text-sm text-slate-500 font-medium">คลิกเพื่ออัปโหลดรูปภาพสินค้า</p>
+                                    <p class="text-xs text-slate-400 mt-1">รองรับ JPG, PNG (แนะนำ 600x600 px)</p>
+                                </div>
+                                <img id="hm-add-img-preview" src=""
+                                    class="hidden mx-auto max-h-40 rounded-lg object-contain">
+                            </div>
+                        </div>
+                        <button type="button" onclick="handleHandmadeAddProduct()"
+                            class="w-full py-4 bg-gradient-to-r from-fuchsia-500 to-purple-600 hover:from-fuchsia-600 hover:to-purple-700 text-white rounded-xl font-bold text-lg shadow-lg shadow-fuchsia-200 transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i> ลงขายสินค้า
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1626,7 +1798,7 @@
     <script>
         const SUPABASE_URL = 'https://zpdspvbneqqcmbwwxscx.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_mQ4JXuepDNrT_0dVUdRLXA_lza4uVEy';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // State Management
         let state = {
@@ -1634,29 +1806,29 @@
             users: [], products: [], orders: [], reviews: [], cart: []
         };
 
+        function saveGlobalDB() {
+            localStorage.setItem(APP_ID + '_db', JSON.stringify({ users: state.users, products: state.products, orders: state.orders, reviews: state.reviews }));
+        }
+
         async function fetchInitialData() {
-            const [u, p, o, r] = await Promise.all([
-                supabase.from('users').select('*'),
-                supabase.from('products').select('*'),
-                supabase.from('orders').select('*'),
-                supabase.from('reviews').select('*')
-            ]);
-            if (u.data) state.users = u.data;
-            if (p.data) state.products = p.data;
-            if (o.data) state.orders = o.data;
-            if (r.data) state.reviews = r.data;
+            const dbData = localStorage.getItem(APP_ID + '_db');
+            if (dbData) {
+                const p = JSON.parse(dbData);
+                state.users = p.users || [];
+                state.products = p.products || [];
+                state.orders = p.orders || [];
+                state.reviews = p.reviews || [];
+            }
             renderView();
         }
 
         function initDBListeners() {
-            fetchInitialData();
-            
-            supabase.channel('custom-all-channel')
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, payload => { fetchInitialData(); })
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, payload => { fetchInitialData(); })
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, payload => { fetchInitialData(); })
-                .on('postgres_changes', { event: '*', schema: 'public', table: 'reviews' }, payload => { fetchInitialData(); })
-                .subscribe();
+            try {
+                fetchInitialData().catch(err => console.error("Initial Data Error:", err));
+                // Realtime disabled for LocalStorage mode
+            } catch (err) {
+                console.error("Supabase Init Error:", err);
+            }
         }
 
         const APP_ID = 'eduswap-plus-v5-fixed';
@@ -1685,8 +1857,13 @@
         }
 
         function navigate(page, id = null, orderId = null) {
-            state.currentPage = page; state.selectedId = id; state.selectedOrderId = orderId;
-            renderView(); window.scrollTo(0, 0);
+            try {
+                state.currentPage = page; state.selectedId = id; state.selectedOrderId = orderId;
+                renderView(); window.scrollTo(0, 0);
+            } catch (err) {
+                console.error("Navigation Error:", err);
+                alert("เกิดข้อผิดพลาดในการเปิดหน้า: " + err.message);
+            }
         }
 
         function renderView() {
@@ -1860,7 +2037,8 @@
             if (state.users.some(u => u.user === user)) return showToast('ชื่อผู้ใช้นี้ถูกใช้งานแล้ว', 'error');
 
             try {
-                await supabase.from('users').insert({ id: user, user, pass, role: role });
+                state.users.push({ id: user, user, pass, role: role });
+                saveGlobalDB();
                 showToast('สมัครสมาชิกสำเร็จ!', 'success'); state.authMode = 'login'; renderView();
             } catch (e) {
                 showToast('เกิดข้อผิดพลาด: ' + e.message, 'error');
@@ -1934,7 +2112,9 @@
             showToast('กำลังลงขายสินค้า...', 'info');
             try {
                 let imgUrl = uploadedImageData || `https://placehold.co/600x600/6366f1/ffffff?text=${encodeURIComponent(title)}`;
-                await supabase.from('products').insert({ title, price, cat, desc, img: imgUrl, seller: state.user.user, status: 'available', stock, date: Date.now() });
+                const newProduct = { id: 'prod_' + Date.now(), title, price, cat, desc, img: imgUrl, seller: state.user.user, status: 'available', stock, date: Date.now() };
+                state.products.push(newProduct);
+                saveGlobalDB();
                 showToast('ลงขายสำเร็จ!', 'success'); uploadedImageData = ''; navigate('shop');
             } catch (e) {
                 showToast('เกิดข้อผิดพลาด (รูปอาจใหญ่เกินไป): ' + e.message, 'error');
@@ -1949,7 +2129,7 @@
                     const newStock = p.stock + parseInt(amt);
                     const status = newStock > 0 ? 'available' : p.status;
                     try {
-                        await supabase.from('products').update({ stock: newStock, status }).eq('id', id);
+                        await supabaseClient.from('products').update({ stock: newStock, status }).eq('id', id);
                         showToast(`เพิ่มสต็อก ${p.title} สำเร็จ!`, 'success');
                     } catch (e) { showToast('อัปเดตไม่สำเร็จ: ' + e.message, 'error'); }
                 }
@@ -1971,7 +2151,7 @@
             const orderData = { userId: state.user.user, items: [...state.cart], total: state.cart.reduce((s, p) => s + p.price, 0), pickupDate: date, pickupTime: time, pickupLocation: loc, paymentMethod: pay, date: Date.now() };
 
             try {
-                const { data, error } = await supabase.from('orders').insert(orderData).select();
+                const { data, error } = await supabaseClient.from('orders').insert(orderData).select();
                 if (error) throw error;
                 orderData.id = data[0].id;
 
@@ -1979,7 +2159,7 @@
                     const p = state.products.find(x => x.id === c.id);
                     if (p) {
                         const newStock = p.stock - 1;
-                        await supabase.from('products').update({ stock: newStock, status: newStock <= 0 ? 'sold' : p.status }).eq('id', c.id);
+                        await supabaseClient.from('products').update({ stock: newStock, status: newStock <= 0 ? 'sold' : p.status }).eq('id', c.id);
                     }
                 }
                 state.checkoutPickupData = orderData; state.cart = []; saveLocal(); navigate('pickup-success');
@@ -2000,7 +2180,7 @@
             showToast('กำลังบันทึกรีวิว...', 'info');
             try {
                 for (const item of order.items) {
-                    await supabase.from('reviews').insert({ productId: item.id, orderId, userId: state.user.user, rating: currentRating, comment: comment || 'ได้รับของเรียบร้อยครับ/ค่ะ', date: Date.now() });
+                    await supabaseClient.from('reviews').insert({ productId: item.id, orderId, userId: state.user.user, rating: currentRating, comment: comment || 'ได้รับของเรียบร้อยครับ/ค่ะ', date: Date.now() });
                 }
                 showToast('ขอบคุณสำหรับรีวิวครับ!', 'success'); currentRating = 0; navigate('profile');
             } catch (e) { showToast('เกิดข้อผิดพลาด: ' + e.message, 'error'); }
@@ -2404,7 +2584,7 @@
         }
 
         function renderShop(container) {
-            let filtered = state.products.filter(p => { const mc = state.selectedCat === 'all' || p.cat === state.selectedCat; const ms = p.title.toLowerCase().includes(state.searchQuery.toLowerCase()); return mc && ms && p.status === 'available'; });
+            let filtered = state.products.filter(p => { const mc = state.selectedCat === 'all' || p.cat === state.selectedCat; const ms = (p.title || p.name || '').toLowerCase().includes((state.searchQuery || '').toLowerCase()); return mc && ms && p.status === 'available'; });
             container.innerHTML = `
                 <div class="mb-10">
                     <h2 class="text-2xl sm:text-3xl font-black mb-6">ค้นหาอุปกรณ์การเรียน</h2>
@@ -2425,8 +2605,8 @@
                     <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                         ${filtered.map(p => `<div onclick="navigate('detail', '${p.id}')" class="bg-white rounded-[1.5rem] sm:rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all cursor-pointer overflow-hidden group">
                             <div class="h-40 sm:h-48 bg-slate-50"><img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition-transform"></div>
-                            <div class="p-4 sm:p-5"><h4 class="font-bold text-slate-800 line-clamp-1 mb-1 text-sm sm:text-base">${p.title}</h4>
-                                <p class="font-black text-lg sm:text-xl text-indigo-600 mb-3 sm:mb-4">฿${p.price.toLocaleString()}</p>
+                            <div class="p-4 sm:p-5"><h4 class="font-bold text-slate-800 line-clamp-1 mb-1 text-sm sm:text-base">${p.title || p.name || 'ไม่มีชื่อสินค้า'}</h4>
+                                <p class="font-black text-lg sm:text-xl text-indigo-600 mb-3 sm:mb-4">฿${p.price?.toLocaleString() || 0}</p>
                                 <button onclick="event.stopPropagation(); addToCart('${p.id}')" class="w-full bg-slate-50 text-indigo-600 py-3 rounded-xl font-bold hover:bg-indigo-600 hover:text-white transition-all text-xs sm:text-sm flex items-center justify-center gap-2"><i data-lucide="shopping-cart" class="w-4 h-4"></i> ใส่ตะกร้า</button>
                             </div></div>`).join('')}
                     </div>`}`;
@@ -2777,6 +2957,63 @@
         let artBriefs = []; // Store user's commissions
         let artCart = [];
         let currentBriefItemId = null;
+        let artAddImageData = '';
+
+        function openArtAddModal() {
+            document.getElementById('artAddForm').reset();
+            artAddImageData = '';
+            document.getElementById('art-add-img-preview').src = '';
+            document.getElementById('art-add-img-preview').classList.add('hidden');
+            document.getElementById('art-add-img-placeholder').classList.remove('hidden');
+            document.getElementById('artAddModal').classList.remove('hidden');
+        }
+
+        function closeArtAddModal() {
+            document.getElementById('artAddModal').classList.add('hidden');
+        }
+
+        function previewArtAddImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    artAddImageData = e.target.result;
+                    document.getElementById('art-add-img-preview').src = e.target.result;
+                    document.getElementById('art-add-img-preview').classList.remove('hidden');
+                    document.getElementById('art-add-img-placeholder').classList.add('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function handleArtAddProduct() {
+            const name = document.getElementById('art-add-name').value.trim();
+            const price = document.getElementById('art-add-price').value;
+            const category = document.getElementById('art-add-category').value;
+            const author = document.getElementById('art-add-author').value.trim();
+            const desc = document.getElementById('art-add-desc').value.trim();
+            const type = document.querySelector('input[name="art_add_type"]:checked').value;
+
+            if (!name || !price || !author) {
+                alert('กรุณากรอกข้อมูลที่จำเป็น (*) ให้ครบถ้วน');
+                return;
+            }
+
+            const newItem = {
+                id: 'a' + Date.now(),
+                name: name,
+                price: parseInt(price),
+                category: category,
+                type: type,
+                author: author,
+                desc: desc || 'ไม่มีคำอธิบายเพิ่มเติม',
+                img: artAddImageData || 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&q=80' // default img
+            };
+
+            ART_PRODUCTS.unshift(newItem);
+            renderArtGrid();
+            closeArtAddModal();
+            showToast('ลงขายผลงานศิลปะเรียบร้อยแล้ว!', 'success');
+        }
 
         function renderArtGrid(category = 'ทั้งหมด') {
             const grid = document.getElementById('art-grid');
@@ -3533,6 +3770,61 @@
         let currentHandmadeItem = null;
         let handmadeCart = [];
         let handmadeOrders = [];
+        let handmadeAddImageData = '';
+
+        function openHandmadeAddModal() {
+            document.getElementById('handmadeAddForm').reset();
+            handmadeAddImageData = '';
+            document.getElementById('hm-add-img-preview').src = '';
+            document.getElementById('hm-add-img-preview').classList.add('hidden');
+            document.getElementById('hm-add-img-placeholder').classList.remove('hidden');
+            document.getElementById('handmadeAddModal').classList.remove('hidden');
+        }
+
+        function closeHandmadeAddModal() {
+            document.getElementById('handmadeAddModal').classList.add('hidden');
+        }
+
+        function previewHandmadeAddImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    handmadeAddImageData = e.target.result;
+                    document.getElementById('hm-add-img-preview').src = e.target.result;
+                    document.getElementById('hm-add-img-preview').classList.remove('hidden');
+                    document.getElementById('hm-add-img-placeholder').classList.add('hidden');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function handleHandmadeAddProduct() {
+            const name = document.getElementById('hm-add-name').value.trim();
+            const price = document.getElementById('hm-add-price').value;
+            const maker = document.getElementById('hm-add-maker').value.trim();
+            const highlight = document.getElementById('hm-add-highlight').value.trim();
+            const story = document.getElementById('hm-add-story').value.trim();
+
+            if (!name || !price || !maker || !highlight || !story) {
+                alert('กรุณากรอกข้อมูลที่จำเป็น (*) ให้ครบถ้วน');
+                return;
+            }
+
+            const newItem = {
+                id: 'hm' + Date.now(),
+                name: name,
+                price: parseInt(price),
+                highlight: highlight,
+                maker: maker,
+                story: story,
+                img: handmadeAddImageData || 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?w=600&q=80' // default img
+            };
+
+            HANDMADE_ITEMS.unshift(newItem);
+            renderHandmadeGrid();
+            closeHandmadeAddModal();
+            showToast('ลงขายสินค้าแฮนด์เมดเรียบร้อยแล้ว!', 'success');
+        }
 
         function renderHandmadeGrid() {
             const grid = document.getElementById('handmade-grid');
