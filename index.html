@@ -53,6 +53,22 @@
             }
         }
 
+        @keyframes float-1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+        @keyframes float-2 {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-40px) translateX(20px); }
+        }
+        @keyframes float-3 {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-35px) scale(1.1); }
+        }
+        .animate-float-1 { animation: float-1 8s ease-in-out infinite; }
+        .animate-float-2 { animation: float-2 12s ease-in-out infinite; }
+        .animate-float-3 { animation: float-3 10s ease-in-out infinite; }
+
         /* ================= EduSwap Styles ================= */
         .glass-effect {
             background: rgba(255, 255, 255, 0.85);
@@ -229,10 +245,16 @@
             </button>
         </div>
 
-        <!-- Background Blobs -->
-        <div class="blob bg-indigo-300 w-96 h-96 rounded-full top-[-10%] left-[-10%]"></div>
-        <div class="blob bg-pink-300 w-96 h-96 rounded-full bottom-[-10%] right-[-10%] animation-delay-2000"></div>
-        <div class="blob bg-purple-300 w-80 h-80 rounded-full top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2">
+        <!-- Background Decorations -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[10%] left-[5%] animate-float-1 opacity-70"><i data-lucide="layers" class="w-48 h-48 text-indigo-400 -rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute top-[60%] right-[2%] animate-float-2 opacity-70"><i data-lucide="sparkles" class="w-56 h-56 text-purple-400 rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute bottom-[10%] left-[10%] animate-float-3 opacity-60"><i data-lucide="layout-grid" class="w-32 h-32 text-pink-400 rotate-45 drop-shadow-xl"></i></div>
+            <div class="absolute top-[40%] right-[15%] animate-float-1 opacity-60" style="animation-delay: 2s"><i data-lucide="compass" class="w-40 h-40 text-blue-400 -rotate-6 drop-shadow-xl"></i></div>
+            
+            <div class="blob bg-indigo-500/60 w-[36rem] h-[36rem] rounded-full top-[-10%] left-[-10%]"></div>
+            <div class="blob bg-pink-500/60 w-[36rem] h-[36rem] rounded-full bottom-[-10%] right-[-10%] animation-delay-2000"></div>
+            <div class="blob bg-purple-400/50 w-[32rem] h-[32rem] rounded-full top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2"></div>
         </div>
 
         <div class="max-w-6xl lg:max-w-7xl w-full z-10 relative py-8 md:py-12">
@@ -241,7 +263,7 @@
                     class="inline-flex items-center justify-center p-3 bg-white/50 rounded-2xl mb-4 backdrop-blur-sm border border-white/60 shadow-sm">
                     <i data-lucide="layers" class="w-8 h-8 text-indigo-600"></i>
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-800 tracking-tight">Home</h1>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 tracking-tight pb-2">All-in-One Portal</h1>
                 <p class="text-slate-600 text-lg md:text-xl font-medium max-w-xl mx-auto">
                     เลือกเข้าสู่เว็บไซต์หรือบริการที่คุณต้องการใช้งานได้จากที่นี่</p>
                 <div class="flex justify-center mt-6">
@@ -397,8 +419,18 @@
     <!-- FOOD APP -->
     <!-- ========================================================================= -->
     <div id="app-food" class="bg-orange-50/30 text-slate-800 min-h-screen pb-20 relative" style="display: none;">
+        <!-- Background Decorations -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[15%] left-[2%] animate-float-1 opacity-70"><i data-lucide="pizza" class="w-48 h-48 text-orange-400 -rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute top-[55%] right-[2%] animate-float-2 opacity-70"><i data-lucide="coffee" class="w-56 h-56 text-amber-400 rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute bottom-[5%] left-[15%] animate-float-3 opacity-60"><i data-lucide="utensils" class="w-32 h-32 text-red-400 rotate-45 drop-shadow-xl"></i></div>
+            <div class="blob bg-orange-500/60 w-[32rem] h-[32rem] rounded-full top-[5%] right-[-15%]"></div>
+            <div class="blob bg-amber-400/60 w-[28rem] h-[28rem] rounded-full bottom-[15%] left-[-10%] animation-delay-2000"></div>
+            <div class="blob bg-red-400/40 w-[24rem] h-[24rem] rounded-full top-[40%] left-[30%]"></div>
+        </div>
+
         <!-- Navigation -->
-        <nav class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-orange-100 shadow-sm">
+        <nav class="fixed top-0 left-0 right-0 w-full z-40 bg-white/80 backdrop-blur-md border-b border-orange-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <a href="#" onclick="switchApp('app-portal'); return false;"
@@ -427,7 +459,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="bg-white border-b border-orange-100 relative overflow-hidden">
+        <div class="bg-white/80 backdrop-blur-md border-b border-orange-100 relative overflow-hidden z-10">
             <div class="absolute right-0 top-0 opacity-10 pointer-events-none">
                 <i data-lucide="coffee" class="w-64 h-64 -rotate-12 -mt-10 -mr-10 text-orange-600"></i>
             </div>
@@ -439,7 +471,7 @@
         </div>
 
         <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 py-8">
+        <main class="max-w-7xl mx-auto px-4 pt-24 pb-8 relative z-10">
             <!-- Filter / Categories -->
             <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                 <div class="flex gap-3 overflow-x-auto pb-2 snap-x hide-scrollbar w-full sm:w-auto"
@@ -557,10 +589,20 @@
     <!-- ========================================================================= -->
     <!-- EDUSWAP APP -->
     <!-- ========================================================================= -->
-    <div id="app-eduswap" class="bg-slate-50 text-slate-800 pb-20 md:pb-0 min-h-screen" style="display: none;">
+    <div id="app-eduswap" class="bg-slate-50 text-slate-800 pb-20 md:pb-0 min-h-screen relative" style="display: none;">
+        <!-- Background Decorations -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[10%] right-[5%] animate-float-1 opacity-70"><i data-lucide="book-open" class="w-48 h-48 text-indigo-400 rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute bottom-[15%] left-[5%] animate-float-2 opacity-70"><i data-lucide="backpack" class="w-56 h-56 text-blue-400 -rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute top-[45%] left-[8%] animate-float-3 opacity-60"><i data-lucide="pencil" class="w-32 h-32 text-sky-400 rotate-45 drop-shadow-xl"></i></div>
+            <div class="blob bg-indigo-500/60 w-[32rem] h-[32rem] rounded-full top-[-5%] left-[-15%]"></div>
+            <div class="blob bg-blue-400/60 w-[28rem] h-[28rem] rounded-full bottom-[5%] right-[-10%] animation-delay-2000"></div>
+            <div class="blob bg-purple-400/40 w-[24rem] h-[24rem] rounded-full top-[35%] right-[20%]"></div>
+        </div>
+
         <div id="toast-container" class="fixed top-20 right-6 z-[100] flex flex-col gap-2"></div>
 
-        <nav class="sticky top-0 z-50 glass-effect border-b border-slate-200">
+        <nav class="fixed top-0 left-0 right-0 w-full z-50 glass-effect border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
                 <div class="flex items-center gap-1 sm:gap-3">
                     <a href="#" onclick="switchApp('app-portal'); return false;"
@@ -629,15 +671,25 @@
             </button>
         </div>
 
-        <main id="main-content" class="max-w-7xl mx-auto px-4 py-6 min-h-[80vh]"></main>
+        <main id="main-content" class="max-w-7xl mx-auto px-4 pt-24 pb-6 min-h-[80vh] relative z-10"></main>
     </div>
 
     <!-- ========================================================================= -->
     <!-- RENTAL APP -->
     <!-- ========================================================================= -->
-    <div id="app-rental" class="bg-rose-50/30 text-slate-800 min-h-screen pb-20" style="display: none;">
+    <div id="app-rental" class="bg-rose-50/30 text-slate-800 min-h-screen pb-20 relative" style="display: none;">
+        <!-- Background Decorations -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[15%] left-[5%] animate-float-1 opacity-70"><i data-lucide="shirt" class="w-48 h-48 text-pink-400 -rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute top-[55%] right-[5%] animate-float-2 opacity-70"><i data-lucide="shopping-bag" class="w-56 h-56 text-rose-400 rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute bottom-[10%] left-[15%] animate-float-3 opacity-60"><i data-lucide="scissors" class="w-32 h-32 text-fuchsia-400 rotate-45 drop-shadow-xl"></i></div>
+            <div class="blob bg-pink-500/60 w-[32rem] h-[32rem] rounded-full top-[5%] right-[-15%]"></div>
+            <div class="blob bg-rose-400/60 w-[28rem] h-[28rem] rounded-full bottom-[15%] left-[-10%] animation-delay-2000"></div>
+            <div class="blob bg-fuchsia-400/40 w-[24rem] h-[24rem] rounded-full top-[40%] left-[30%]"></div>
+        </div>
+
         <!-- Navigation -->
-        <nav class="sticky top-0 z-40 glass-nav shadow-sm">
+        <nav class="fixed top-0 left-0 right-0 w-full z-40 glass-nav shadow-sm">
             <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <a href="#" onclick="switchApp('app-portal'); return false;"
@@ -670,7 +722,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="bg-white border-b border-pink-100">
+        <div class="bg-white/80 backdrop-blur-md border-b border-pink-100 relative z-10">
             <div class="max-w-7xl mx-auto px-4 py-12 md:py-16 text-center">
                 <h1 class="text-3xl md:text-5xl font-extrabold text-slate-800 mb-4">บริการเช่าชุดรายชั่วโมง</h1>
                 <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto">เลือกชุดที่ใช่ ในสไตล์ที่คุณชอบ
@@ -679,7 +731,7 @@
         </div>
 
         <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 py-8">
+        <main class="max-w-7xl mx-auto px-4 pt-24 pb-8 relative z-10">
             <!-- Filter / Categories -->
             <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                 <div class="flex gap-3 overflow-x-auto pb-2 snap-x hide-scrollbar w-full sm:w-auto"
@@ -702,90 +754,8 @@
             </div>
 
             <!-- Catalog Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Item 1 -->
-                <div class="item-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-100 transition-all duration-300 group"
-                    data-category="ชุดราตรี">
-                    <div class="h-64 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1566160983984-7a387532bd77?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Elegant Red Dress"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-pink-600 shadow-sm">
-                            50 ฿ / ชม.
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-slate-800">ชุดราตรียาว สีแดงเบอร์กันดี</h3>
-                            <span
-                                class="bg-rose-100 text-rose-600 text-xs px-2 py-1 rounded-md font-medium">ชุดราตรี</span>
-                        </div>
-                        <p class="text-sm text-slate-500 mb-4">ผ้าซาตินพรีเมียม ดีไซน์เรียบหรู
-                            เหมาะสำหรับงานกาล่าและงานแต่งงาน</p>
-                        <button onclick="addStyleRentToCart('ชุดราตรียาว สีแดงเบอร์กันดี', 50, 'ชุดราตรี', this)"
-                            class="w-full py-3 bg-slate-800 hover:bg-pink-600 text-white rounded-xl font-medium transition-colors flex justify-center items-center gap-2">
-                            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                            เพิ่มลงตะกร้า
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="item-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-100 transition-all duration-300 group"
-                    data-category="ชุดสูท/ทักซิโด้">
-                    <div class="h-64 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1593030761757-71fae46af504?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Classic Navy Suit"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-pink-600 shadow-sm">
-                            80 ฿ / ชม.
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-slate-800">ชุดสูทสีกรมท่า (Classic Navy)</h3>
-                            <span
-                                class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-md font-medium">สูท/ทักซิโด้</span>
-                        </div>
-                        <p class="text-sm text-slate-500 mb-4">ชุดสูทเข้ารูปสไตล์เกาหลี พร้อมเสื้อเชิ้ตและเนคไท
-                            ครบเซ็ตพร้อมออกงาน</p>
-                        <button onclick="addStyleRentToCart('ชุดสูทสีกรมท่า (Classic Navy)', 80, 'ชุดสูท', this)"
-                            class="w-full py-3 bg-slate-800 hover:bg-pink-600 text-white rounded-xl font-medium transition-colors flex justify-center items-center gap-2">
-                            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                            เพิ่มลงตะกร้า
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="item-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-100 transition-all duration-300 group"
-                    data-category="ชุดไทย">
-                    <div class="h-64 bg-slate-200 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                            alt="Thai Traditional"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div
-                            class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-pink-600 shadow-sm">
-                            60 ฿ / ชม.
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-slate-800">ชุดไทยประยุกต์ สีทอง</h3>
-                            <span
-                                class="bg-amber-100 text-amber-700 text-xs px-2 py-1 rounded-md font-medium">ชุดไทย</span>
-                        </div>
-                        <p class="text-sm text-slate-500 mb-4">สไบปักดิ้นทองสวยงาม พร้อมผ้านุ่งลายไทยประยุกต์
-                            เครื่องประดับครบเซ็ต</p>
-                        <button onclick="addStyleRentToCart('ชุดไทยประยุกต์ สีทอง', 60, 'ชุดไทย', this)"
-                            class="w-full py-3 bg-slate-800 hover:bg-pink-600 text-white rounded-xl font-medium transition-colors flex justify-center items-center gap-2">
-                            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                            เพิ่มลงตะกร้า
-                        </button>
-                    </div>
-                </div>
+            <div id="rental-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Dynamically rendered by JS -->
             </div>
         </main>
 
@@ -897,8 +867,18 @@
     <!-- ART & HANDMADE APP -->
     <!-- ========================================================================= -->
     <div id="app-art" class="bg-slate-50 text-slate-800 min-h-screen pb-20 relative" style="display: none;">
+        <!-- Background Decorations -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[20%] right-[2%] animate-float-1 opacity-70"><i data-lucide="palette" class="w-56 h-56 text-teal-400 rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute bottom-[20%] left-[5%] animate-float-2 opacity-70"><i data-lucide="brush" class="w-48 h-48 text-emerald-400 -rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute top-[50%] right-[15%] animate-float-3 opacity-60"><i data-lucide="image" class="w-32 h-32 text-cyan-400 rotate-6 drop-shadow-xl"></i></div>
+            <div class="blob bg-teal-500/60 w-[32rem] h-[32rem] rounded-full top-[10%] left-[-15%]"></div>
+            <div class="blob bg-emerald-400/60 w-[28rem] h-[28rem] rounded-full bottom-[5%] right-[-10%] animation-delay-2000"></div>
+            <div class="blob bg-cyan-400/40 w-[24rem] h-[24rem] rounded-full top-[35%] left-[25%]"></div>
+        </div>
+
         <!-- Navigation -->
-        <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-teal-100 shadow-sm">
+        <nav class="fixed top-0 left-0 right-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-teal-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <a href="#" onclick="switchApp('app-portal'); return false;"
@@ -936,7 +916,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="bg-gradient-to-br from-teal-900 to-teal-700 relative overflow-hidden">
+        <div class="bg-gradient-to-br from-teal-900 to-teal-700 relative overflow-hidden z-10">
             <div class="absolute inset-0 opacity-10 mix-blend-overlay">
                 <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80" alt="Art BG"
                     class="w-full h-full object-cover">
@@ -949,7 +929,7 @@
         </div>
 
         <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 py-8">
+        <main class="max-w-7xl mx-auto px-4 pt-24 pb-8 relative z-10">
             <!-- Filters -->
             <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                 <div class="flex gap-3 overflow-x-auto pb-2 hide-scrollbar w-full sm:w-auto">
@@ -1173,8 +1153,18 @@
     <!-- HANDMADE APP (CraftyStudent) -->
     <!-- ========================================================================= -->
     <div id="app-handmade" class="bg-fuchsia-50/30 text-slate-800 min-h-screen pb-20 relative" style="display: none;">
+        <!-- Background Decorations -->
+        <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <div class="absolute top-[15%] right-[5%] animate-float-1 opacity-70"><i data-lucide="scissors" class="w-48 h-48 text-fuchsia-400 rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute bottom-[20%] left-[2%] animate-float-2 opacity-70"><i data-lucide="heart-handshake" class="w-56 h-56 text-purple-400 -rotate-12 drop-shadow-xl"></i></div>
+            <div class="absolute top-[45%] left-[10%] animate-float-3 opacity-60"><i data-lucide="package" class="w-32 h-32 text-pink-400 rotate-45 drop-shadow-xl"></i></div>
+            <div class="blob bg-fuchsia-500/60 w-[32rem] h-[32rem] rounded-full top-[5%] right-[-15%]"></div>
+            <div class="blob bg-purple-400/60 w-[28rem] h-[28rem] rounded-full bottom-[5%] left-[-10%] animation-delay-2000"></div>
+            <div class="blob bg-pink-400/40 w-[24rem] h-[24rem] rounded-full top-[35%] right-[25%]"></div>
+        </div>
+
         <!-- Navigation -->
-        <nav class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-fuchsia-100 shadow-sm">
+        <nav class="fixed top-0 left-0 right-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-fuchsia-100 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
                 <div class="flex items-center gap-3">
                     <a href="#" onclick="switchApp('app-portal'); return false;"
@@ -1212,7 +1202,7 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="bg-white border-b border-fuchsia-100 relative overflow-hidden">
+        <div class="bg-white/80 backdrop-blur-md border-b border-fuchsia-100 relative overflow-hidden z-10">
             <div
                 class="absolute right-0 bottom-0 opacity-5 pointer-events-none transform translate-x-1/4 translate-y-1/4">
                 <i data-lucide="heart-handshake" class="w-96 h-96 text-fuchsia-600"></i>
@@ -1228,7 +1218,7 @@
         </div>
 
         <!-- Main Content -->
-        <main class="max-w-7xl mx-auto px-4 py-10">
+        <main class="max-w-7xl mx-auto px-4 pt-24 pb-10 relative z-10">
             <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                 <div class="flex items-center gap-2 text-fuchsia-600 font-bold">
                     <i data-lucide="sparkles" class="w-5 h-5"></i>
@@ -1534,6 +1524,69 @@
 
         let styleRentCart = [];
 
+        // ---- localStorage for StyleRent ----
+        const RENTAL_DB_KEY = 'rental_db';
+        function saveRentalDB() {
+            try {
+                localStorage.setItem(RENTAL_DB_KEY, JSON.stringify(RENTAL_ITEMS));
+            } catch(e) {
+                console.warn('saveRentalDB: localStorage quota exceeded', e);
+                alert('⚠️ ไม่สามารถบันทึกรูปภาพขนาดใหญ่ได้ กรุณาใช้ URL รูปภาพแทน');
+            }
+        }
+        function loadRentalDB() {
+            const d = localStorage.getItem(RENTAL_DB_KEY);
+            if (d) {
+                try { RENTAL_ITEMS = JSON.parse(d); } catch(e) {}
+            } else {
+                saveRentalDB();
+            }
+            renderStyleRentItems();
+        }
+
+        function renderStyleRentItems(filterCat) {
+            const grid = document.getElementById('rental-grid');
+            if (!grid) return;
+            const items = filterCat ? RENTAL_ITEMS.filter(i => i.category === filterCat) : RENTAL_ITEMS;
+            grid.innerHTML = items.map(item => `
+                <div class="item-card bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-pink-100 transition-all duration-300 group" data-category="${item.category}">
+                    <div class="h-64 bg-slate-200 relative overflow-hidden">
+                        <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1566160983984-7a387532bd77?w=400'">
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-pink-600 shadow-sm">
+                            ${item.price} ฿ / ชม.
+                        </div>
+                        <div class="absolute top-3 left-3 bg-pink-100 text-pink-700 text-xs font-bold px-2 py-1 rounded-full">${item.category}</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-slate-800 text-lg mb-1 line-clamp-1">${item.name}</h3>
+                        <div class="text-xs text-slate-400 mb-1">${item.desc || ''}</div>
+                        <div class="text-xs text-slate-400 font-medium mb-4">เจ้าของ: ${item.owner || '-'}</div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xl font-black text-pink-600">${item.price} ฿<span class="text-sm font-normal text-slate-400">/ชม.</span></span>
+                            <button onclick="addStyleRentToCart('${item.name}', ${item.price}, '${item.category}', this)"
+                                class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-2 rounded-xl font-bold text-sm hover:scale-105 transition-all shadow-md shadow-pink-200 flex items-center gap-1">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i> เช่า
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        // patch filterItems for rental to use JS array filter
+        function filterItems(category, btn) {
+            document.querySelectorAll('#app-rental .filter-btn').forEach(b => {
+                b.classList.remove('active', 'bg-pink-500', 'text-white', 'shadow-md', 'shadow-pink-200');
+                b.classList.add('bg-white', 'border', 'border-slate-200', 'hover:border-pink-300', 'text-slate-600');
+            });
+            if (btn) {
+                btn.classList.add('active', 'bg-pink-500', 'text-white', 'shadow-md', 'shadow-pink-200');
+                btn.classList.remove('bg-white', 'border', 'border-slate-200');
+            }
+            renderStyleRentItems(category === 'ทั้งหมด' ? null : category);
+        }
+
         function addStyleRentToCart(itemName, rate, category, btnElement) {
             let imageUrl = 'https://images.unsplash.com/photo-1566160983984-7a387532bd77?w=400';
             if (btnElement) {
@@ -1713,7 +1766,11 @@
                 }
             });
 
-            localStorage.setItem('styleRentBookings', JSON.stringify(existingBookings));
+            try {
+                localStorage.setItem('styleRentBookings', JSON.stringify(existingBookings));
+            } catch(e) {
+                console.warn('localStorage quota exceeded for styleRentBookings', e);
+            }
 
             showToast('การเช่าชุดสำเร็จ! ขอบคุณที่ใช้บริการ StyleRent Hub', 'success');
             styleRentCart = [];
@@ -1807,7 +1864,12 @@
         };
 
         function saveGlobalDB() {
-            localStorage.setItem(APP_ID + '_db', JSON.stringify({ users: state.users, products: state.products, orders: state.orders, reviews: state.reviews }));
+            try {
+                localStorage.setItem(APP_ID + '_db', JSON.stringify({ users: state.users, products: state.products, orders: state.orders, reviews: state.reviews }));
+            } catch (e) {
+                console.warn('saveGlobalDB: localStorage quota exceeded', e);
+                alert('⚠️ พื้นที่จัดเก็บเต็ม ไม่สามารถบันทึกข้อมูลได้ กรุณาลบข้อมูลเก่าหรือใช้ URL รูปภาพแทน');
+            }
         }
 
         async function fetchInitialData() {
@@ -1818,6 +1880,27 @@
                 state.products = p.products || [];
                 state.orders = p.orders || [];
                 state.reviews = p.reviews || [];
+            }
+            if (!state.products.find(p => p.id === 'edu1')) {
+                const seedProducts = [
+                    { id: 'edu1', title: 'iPad Pro M1 12.9"', price: 25000, category: 'it', condition: '90%', desc: 'ใช้งานมา 2 ปี สภาพดีมาก แถม Apple Pencil', seller: 'Nut M.6', img: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu2', title: 'หนังสือชีววิทยา ม.ปลาย (เต่าทอง)', price: 150, category: 'books', condition: '80%', desc: 'มีรอยไฮไลต์บ้าง แต่เนื้อหาครบ', seller: 'Ploy M.5', img: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu3', title: 'เครื่องคิดเลขวิทยาศาสตร์ Casio FX-991EX', price: 450, category: 'edu-eq', condition: '95%', desc: 'ซื้อมาไม่ค่อยได้ใช้ สภาพเหมือนใหม่', seller: 'Boy M.4', img: 'https://images.unsplash.com/photo-1587145820266-a5951ee6f620?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu4', title: 'กระดานวาดรูป Wacom Intuos', price: 1200, category: 'it', condition: '85%', desc: 'เหมาะสำหรับผู้เริ่มต้นวาดรูปดิจิทัล', seller: 'Art M.5', img: 'https://images.unsplash.com/photo-1583573636246-18cb2246697f?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu5', title: 'ชุดสีน้ำ Winsor & Newton 12 สี', price: 300, category: 'art', condition: '70%', desc: 'ใช้ไปนิดหน่อย สียังเหลือเยอะ', seller: 'Jane M.6', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu6', title: 'หนังสือสรุปฟิสิกส์ ม.4-6', price: 120, category: 'books', condition: '85%', desc: 'สรุปเข้าใจง่าย เล่มบางพกสะดวก', seller: 'Krit M.6', img: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu7', title: 'ปากกาไฮไลต์ Mildliner 5 สี', price: 100, category: 'stationery', condition: '90%', desc: 'สีพาสเทลสวยงาม ขีดลื่น', seller: 'May M.4', img: 'https://images.unsplash.com/photo-1520121401995-928cd50d4e27?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu8', title: 'สมุดกราฟรายงาน A4', price: 20, category: 'stationery', condition: '100%', desc: 'ยังไม่ได้ใช้งาน ซื้อมาเกิน', seller: 'Tom M.5', img: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu9', title: 'หูฟัง Sony WH-1000XM4', price: 5500, category: 'it', condition: '85%', desc: 'ตัดเสียงรบกวนดีมาก เหมาะสำหรับตอนอ่านหนังสือ', seller: 'Nut M.6', img: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu10', title: 'กระเป๋าดินสอ Smiggle', price: 250, category: 'stationery', condition: '80%', desc: 'จุของได้เยอะ ลายน่ารัก', seller: 'Ploy M.5', img: 'https://images.unsplash.com/photo-1586022879685-6bb9f0aa3646?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu11', title: 'หนังสือนิยายภาษาอังกฤษ Harry Potter', price: 200, category: 'books', condition: '90%', desc: 'อ่านจบแล้วอยากส่งต่อ', seller: 'Boy M.4', img: 'https://images.unsplash.com/photo-1626618012641-bfbca5a3d239?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu12', title: 'ไม้บรรทัดเหล็ก 30 ซม.', price: 15, category: 'edu-eq', condition: '90%', desc: 'แข็งแรงทนทาน', seller: 'Art M.5', img: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu13', title: 'กระดาษวาดเขียน 100 ปอนด์', price: 50, category: 'art', condition: '100%', desc: 'ยังไม่แกะห่อ', seller: 'Jane M.6', img: 'https://images.unsplash.com/photo-1601002360214-72210db2a4fb?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu14', title: 'เมาส์ไร้สาย Logitech', price: 300, category: 'it', condition: '95%', desc: 'คลิกเงียบ ใช้งานดี', seller: 'Krit M.6', img: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 },
+                    { id: 'edu15', title: 'แฟ้มใส่เอกสาร A4 20 ไส้', price: 30, category: 'stationery', condition: '85%', desc: 'สีสันสดใส', seller: 'May M.4', img: 'https://images.unsplash.com/photo-1516414447565-b14be0adf13e?w=400', date: Date.now(), status: 'available', app: 'EduSwap', stock: 1 }
+                ];
+                state.products = [...seedProducts, ...state.products];
+                saveGlobalDB();
             }
             renderView();
         }
@@ -1841,7 +1924,13 @@
             { id: 'it', name: 'ไอที' }
         ];
 
-        function saveLocal() { localStorage.setItem(APP_ID + '_session', JSON.stringify({ user: state.user, cart: state.cart })); }
+        function saveLocal() {
+            try {
+                localStorage.setItem(APP_ID + '_session', JSON.stringify({ user: state.user, cart: state.cart }));
+            } catch (e) {
+                console.warn('saveLocal: localStorage quota exceeded', e);
+            }
+        }
         function loadLocal() {
             const d = localStorage.getItem(APP_ID + '_session');
             if (d) { const p = JSON.parse(d); state.user = p.user; state.cart = p.cart || []; }
@@ -2349,19 +2438,21 @@
                     <div class="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
                         <div class="p-6 border-b border-slate-100"><h3 class="text-xl font-bold flex items-center gap-2 text-slate-700"><i data-lucide="box" class="w-5 h-5 text-indigo-500"></i> รายการสินค้าคงเหลือ</h3></div>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left border-collapse min-w-[700px]">
-                                <thead><tr class="bg-slate-50 text-slate-400 text-xs uppercase"><th class="p-4 pl-6 font-bold">สินค้า</th><th class="p-4 font-bold">ผู้ขาย</th><th class="p-4 font-bold">หมวดหมู่</th><th class="p-4 font-bold">ราคา</th><th class="p-4 pr-6 font-bold">สต็อกคงเหลือ</th></tr></thead>
+                            <table class="w-full text-left border-collapse min-w-[800px]">
+                                <thead><tr class="bg-slate-50 text-slate-400 text-xs uppercase"><th class="p-4 pl-6 font-bold">สินค้า</th><th class="p-4 font-bold">ผู้ขาย</th><th class="p-4 font-bold">หมวดหมู่</th><th class="p-4 font-bold">ราคา</th><th class="p-4 font-bold">สต็อก</th><th class="p-4 pr-6 font-bold">จัดการ</th></tr></thead>
                                 <tbody class="divide-y divide-slate-100">
-                                    ${allProducts.length === 0 ? '<tr><td colspan="5" class="p-8 text-center text-slate-400">ยังไม่มีสินค้าในระบบ</td></tr>' : allProducts.map((p, idx) => {
+                                    ${allProducts.length === 0 ? '<tr><td colspan="6" class="p-8 text-center text-slate-400">ยังไม่มีสินค้าในระบบ</td></tr>' : allProducts.map((p, idx) => {
                 let cat = p.cat || p.category || 'ทั่วไป';
                 let stock = p.stock !== undefined ? p.stock : '-';
                 let seller = p.seller || p.author || p.maker || 'ระบบ';
                 let appColorCls = 'text-slate-600 bg-slate-50 border-slate-100';
                 if (p.app === 'EduSwap') appColorCls = 'text-indigo-600 bg-indigo-50 border-indigo-100';
-                else if (p.app === 'StyleRent (เช่า/ชม.)') appColorCls = 'text-pink-600 bg-pink-50 border-pink-100';
+                else if (p.app === 'StyleRent') appColorCls = 'text-pink-600 bg-pink-50 border-pink-100';
                 else if (p.app === 'EduBites') appColorCls = 'text-orange-600 bg-orange-50 border-orange-100';
                 else if (p.app === 'ArtiCraft') appColorCls = 'text-teal-600 bg-teal-50 border-teal-100';
                 else if (p.app === 'CraftyStudent') appColorCls = 'text-fuchsia-600 bg-fuchsia-50 border-fuchsia-100';
+                const escId = (p.id || '').replace(/'/g,'');
+                const escSrc = p._src || '';
 
                 return `
                                         <tr class="hover:bg-slate-50 transition-colors">
@@ -2375,14 +2466,296 @@
                                             <td class="p-4 text-sm font-medium text-slate-600">${seller}</td>
                                             <td class="p-4"><span class="text-[10px] bg-slate-100 text-slate-500 border border-slate-200 px-2 py-1 rounded-lg font-bold uppercase">${cat}</span></td>
                                             <td class="p-4 font-black text-slate-800">฿${Number(p.price).toLocaleString()}</td>
-                                            <td class="p-4 pr-6"><span class="text-sm font-bold ${stock === '-' ? 'text-slate-400' : stock > 0 ? 'text-emerald-600' : 'text-rose-500'}">${stock === '-' ? 'ไม่จำกัด' : stock + ' ชิ้น'}</span></td>
+                                            <td class="p-4"><span class="text-sm font-bold ${stock === '-' ? 'text-slate-400' : stock > 0 ? 'text-emerald-600' : 'text-rose-500'}">${stock === '-' ? 'ไม่จำกัด' : stock + ' ชิ้น'}</span></td>
+                                            <td class="p-4 pr-6">
+                                                <button onclick="openAdminEditModal('${escId}','${escSrc}')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs px-3 py-1.5 rounded-lg transition-all flex items-center gap-1">
+                                                    <i data-lucide="pencil" class="w-3 h-3"></i> แก้ไข
+                                                </button>
+                                            </td>
                                         </tr>
                                     `}).join('')}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                </div>`;
+                </div>
+                
+                <!-- Admin Edit Modal -->
+                <div id="adminEditModal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4">
+                    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeAdminEditModal()"></div>
+                    <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg z-10 flex flex-col" style="max-height:90vh;">
+                        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 rounded-t-3xl shrink-0">
+                            <h3 class="text-xl font-black text-white flex items-center gap-2"><i data-lucide="pencil" class="w-5 h-5"></i> แก้ไขสินค้า</h3>
+                            <p id="admin-edit-app-label" class="text-indigo-200 text-sm mt-1"></p>
+                        </div>
+                        <div class="p-6 space-y-4 overflow-y-auto flex-1">
+                            <input type="hidden" id="admin-edit-id">
+                            <input type="hidden" id="admin-edit-src">
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">ชื่อสินค้า</label>
+                                    <input id="admin-edit-name" type="text" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 outline-none transition">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">ราคา (บาท)</label>
+                                        <input id="admin-edit-price" type="number" min="0" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-indigo-300 outline-none transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">หมวดหมู่</label>
+                                        <input id="admin-edit-category" type="text" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-indigo-300 outline-none transition">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">คำอธิบาย</label>
+                                    <textarea id="admin-edit-desc" rows="3" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-indigo-300 outline-none transition resize-none"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-500 mb-1.5 uppercase tracking-wide">รูปภาพสินค้า</label>
+                                    <!-- Tab Switcher -->
+                                    <div class="flex rounded-xl border border-slate-200 overflow-hidden mb-3">
+                                        <button type="button" onclick="switchImgTab('url')" id="img-tab-url" class="flex-1 py-2 text-xs font-bold transition-all bg-indigo-600 text-white">🔗 URL ลิ้งก์</button>
+                                        <button type="button" onclick="switchImgTab('file')" id="img-tab-file" class="flex-1 py-2 text-xs font-bold transition-all bg-white text-slate-500 hover:bg-slate-50">📁 จากเครื่อง</button>
+                                        <button type="button" onclick="switchImgTab('paste')" id="img-tab-paste" class="flex-1 py-2 text-xs font-bold transition-all bg-white text-slate-500 hover:bg-slate-50">📋 วางรูป</button>
+                                    </div>
+                                    <!-- URL Tab -->
+                                    <div id="img-panel-url">
+                                        <input id="admin-edit-img" type="text" placeholder="https://example.com/image.jpg" class="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:ring-2 focus:ring-indigo-300 outline-none transition">
+                                    </div>
+                                    <!-- File Tab -->
+                                    <div id="img-panel-file" class="hidden">
+                                        <label class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300 rounded-xl cursor-pointer hover:border-indigo-400 hover:bg-indigo-50 transition-all group">
+                                            <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-400 group-hover:text-indigo-500 mb-2"></i>
+                                            <span class="text-sm font-bold text-slate-400 group-hover:text-indigo-600">คลิกเพื่อเลือกรูปภาพ</span>
+                                            <span class="text-xs text-slate-300 mt-1">JPG, PNG, GIF, WebP</span>
+                                            <input id="admin-edit-file" type="file" accept="image/*" class="hidden" onchange="handleAdminFileUpload(this)">
+                                        </label>
+                                    </div>
+                                    <!-- Paste Tab -->
+                                    <div id="img-panel-paste" class="hidden">
+                                        <div id="admin-paste-zone" tabindex="0"
+                                            class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300 rounded-xl cursor-pointer hover:border-indigo-400 hover:bg-indigo-50 transition-all focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none"
+                                            onclick="this.focus()" onpaste="handleAdminPaste(event)" onkeydown="if(event.ctrlKey&&event.key==='v')this.focus()">
+                                            <i data-lucide="clipboard" class="w-8 h-8 text-slate-400 mb-2"></i>
+                                            <span class="text-sm font-bold text-slate-400">คลิกที่นี่ แล้ววาง (Ctrl+V)</span>
+                                            <span class="text-xs text-slate-300 mt-1">รองรับรูปที่ Copy มาจากทุกที่</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Preview -->
+                                <div id="admin-edit-img-preview" class="hidden">
+                                    <div class="relative">
+                                        <img id="admin-edit-img-el" src="" class="w-full h-40 object-cover rounded-2xl border border-slate-200">
+                                        <button type="button" onclick="clearAdminImg()" class="absolute top-2 right-2 bg-white/90 hover:bg-red-50 text-red-500 rounded-full p-1.5 shadow-md transition-all">
+                                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 flex gap-3 border-t border-slate-100 shrink-0 bg-white rounded-b-3xl">
+                            <button onclick="saveAdminEdit()" class="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-black py-3 rounded-xl hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-2">
+                                <i data-lucide="save" class="w-4 h-4"></i> บันทึกการแก้ไข
+                            </button>
+                            <button onclick="closeAdminEditModal()" class="px-6 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 rounded-xl transition-all">
+                                ยกเลิก
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            // Re-run lucide after rendering modal
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function openAdminEditModal(productId, src) {
+            const allProducts = getAllProducts();
+            const p = allProducts.find(x => (x.id || '') == productId && (x._src || '') == src);
+            if (!p) return;
+
+            document.getElementById('admin-edit-id').value = productId;
+            document.getElementById('admin-edit-src').value = src;
+            document.getElementById('admin-edit-name').value = p.name || p.title || '';
+            document.getElementById('admin-edit-price').value = p.price || 0;
+            document.getElementById('admin-edit-category').value = p.category || p.cat || '';
+            document.getElementById('admin-edit-desc').value = p.desc || p.description || p.highlight || '';
+            const imgVal = p.img || '';
+            document.getElementById('admin-edit-img').value = imgVal;
+            window._adminCurrentImg = imgVal; // shared image data (URL or base64)
+
+            const appLabels = { food: 'EduBites (สั่งอาหาร)', art: 'ArtiCraft (งานศิลปะ)', handmade: 'CraftyStudent (งานฝีมือ)', eduswap: 'EduSwap (สินค้าทั่วไป)', rental: 'StyleRent (เช่าชุด)' };
+            document.getElementById('admin-edit-app-label').textContent = appLabels[src] || src;
+
+            // Reset to URL tab
+            switchImgTab('url');
+
+            // Show/hide preview
+            const preview = document.getElementById('admin-edit-img-preview');
+            const imgEl = document.getElementById('admin-edit-img-el');
+            if (imgVal) { imgEl.src = imgVal; preview.classList.remove('hidden'); }
+            else { preview.classList.add('hidden'); }
+
+            // Live preview on URL change
+            document.getElementById('admin-edit-img').oninput = function() {
+                window._adminCurrentImg = this.value;
+                if (this.value) { imgEl.src = this.value; preview.classList.remove('hidden'); }
+                else { preview.classList.add('hidden'); }
+            };
+
+            const modal = document.getElementById('adminEditModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        function closeAdminEditModal() {
+            const modal = document.getElementById('adminEditModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function saveAdminEdit() {
+            const id = document.getElementById('admin-edit-id').value;
+            const src = document.getElementById('admin-edit-src').value;
+            const newName = document.getElementById('admin-edit-name').value.trim();
+            const newPrice = parseInt(document.getElementById('admin-edit-price').value) || 0;
+            const newCat = document.getElementById('admin-edit-category').value.trim();
+            const newDesc = document.getElementById('admin-edit-desc').value.trim();
+            // Use the shared image variable (works for URL, base64 from file/paste)
+            const newImg = window._adminCurrentImg || document.getElementById('admin-edit-img').value.trim();
+
+            if (!newName) { alert('กรุณากรอกชื่อสินค้า'); return; }
+
+            function applyEdits(arr, isTitle) {
+                const item = arr.find(x => x.id == id);
+                if (!item) return false;
+                if (isTitle) item.title = newName; else item.name = newName;
+                item.price = newPrice;
+                if (item.category !== undefined) item.category = newCat;
+                if (item.cat !== undefined) item.cat = newCat;
+                if (item.desc !== undefined) item.desc = newDesc;
+                if (item.description !== undefined) item.description = newDesc;
+                if (item.highlight !== undefined) item.highlight = newDesc;
+                item.img = newImg;
+                return true;
+            }
+
+            let saved = false;
+            if (src === 'food') { saved = applyEdits(FOOD_MENU, false); if (saved) saveFoodDB(); }
+            else if (src === 'art') { saved = applyEdits(ART_PRODUCTS, false); if (saved) saveArtDB(); }
+            else if (src === 'handmade') { saved = applyEdits(HANDMADE_ITEMS, false); if (saved) saveHandmadeDB(); }
+            else if (src === 'rental') { saved = applyEdits(RENTAL_ITEMS, false); if (saved) saveRentalDB(); }
+            else if (src === 'eduswap') { saved = applyEdits(state.products, true); if (saved) saveGlobalDB(); }
+
+            if (saved) {
+                closeAdminEditModal();
+                // Re-render the relevant app
+                if (src === 'food' && typeof renderFoodGrid === 'function') renderFoodGrid();
+                if (src === 'art' && typeof renderArtGrid === 'function') renderArtGrid();
+                if (src === 'handmade' && typeof renderHandmadeGrid === 'function') renderHandmadeGrid();
+                if (src === 'rental') renderStyleRentItems();
+                if (src === 'eduswap' && typeof renderView === 'function') renderView();
+                // Refresh admin dashboard
+                const container = document.getElementById('main-content');
+                if (container) renderAdminDashboard(container);
+                if (typeof showToast === 'function') showToast('บันทึกการแก้ไขเรียบร้อยแล้ว ✅', 'success');
+            } else {
+                alert('ไม่พบสินค้าที่จะแก้ไข');
+            }
+        }
+
+        // ---- Image tab helpers ----
+        function switchImgTab(tab) {
+            ['url','file','paste'].forEach(t => {
+                const btn = document.getElementById('img-tab-' + t);
+                const panel = document.getElementById('img-panel-' + t);
+                if (t === tab) {
+                    btn.classList.add('bg-indigo-600','text-white');
+                    btn.classList.remove('bg-white','text-slate-500');
+                    panel.classList.remove('hidden');
+                } else {
+                    btn.classList.remove('bg-indigo-600','text-white');
+                    btn.classList.add('bg-white','text-slate-500');
+                    panel.classList.add('hidden');
+                }
+            });
+        }
+
+        function setAdminImgPreview(src) {
+            window._adminCurrentImg = src;
+            const imgEl = document.getElementById('admin-edit-img-el');
+            const preview = document.getElementById('admin-edit-img-preview');
+            imgEl.src = src;
+            preview.classList.remove('hidden');
+            if (window.lucide) window.lucide.createIcons();
+        }
+
+        // Compress image to max 800px wide, WEBP quality 0.8 to preserve transparency and avoid localStorage quota
+        function compressImage(dataUrl, callback) {
+            const img = new Image();
+            img.onload = function() {
+                const maxW = 800;
+                const scale = img.width > maxW ? maxW / img.width : 1;
+                const canvas = document.createElement('canvas');
+                canvas.width = Math.round(img.width * scale);
+                canvas.height = Math.round(img.height * scale);
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                callback(canvas.toDataURL('image/webp', 0.8));
+            };
+            img.src = dataUrl;
+        }
+
+        function handleAdminFileUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                compressImage(e.target.result, function(compressed) {
+                    setAdminImgPreview(compressed);
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleAdminPaste(e) {
+            const items = (e.clipboardData || window.clipboardData).items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.startsWith('image/')) {
+                    const blob = items[i].getAsFile();
+                    const reader = new FileReader();
+                    reader.onload = function(ev) {
+                        compressImage(ev.target.result, function(compressed) {
+                            setAdminImgPreview(compressed);
+                            // Visual feedback
+                            const zone = document.getElementById('admin-paste-zone');
+                            if (zone) {
+                                zone.innerHTML = '<i data-lucide="check-circle" class="w-8 h-8 text-emerald-500 mb-1"></i><span class="text-sm font-bold text-emerald-600">วางรูปสำเร็จแล้ว!</span>';
+                                if (window.lucide) window.lucide.createIcons();
+                            }
+                        });
+                    };
+                    reader.readAsDataURL(blob);
+                    e.preventDefault();
+                    return;
+                }
+            }
+        }
+
+        function clearAdminImg() {
+            window._adminCurrentImg = '';
+            document.getElementById('admin-edit-img').value = '';
+            const preview = document.getElementById('admin-edit-img-preview');
+            preview.classList.add('hidden');
+            // Reset paste zone
+            const zone = document.getElementById('admin-paste-zone');
+            if (zone) {
+                zone.innerHTML = '<i data-lucide="clipboard" class="w-8 h-8 text-slate-400 mb-2"></i><span class="text-sm font-bold text-slate-400">คลิกที่นี่ แล้ววาง (Ctrl+V)</span><span class="text-xs text-slate-300 mt-1">รองรับรูปที่ Copy มาจากทุกที่';
+                if (window.lucide) window.lucide.createIcons();
+            }
+            // Reset file input
+            const fileInput = document.getElementById('admin-edit-file');
+            if (fileInput) fileInput.value = '';
         }
 
         function generateAIAdminSummary() {
@@ -2738,16 +3111,38 @@
     <!-- FOOD SCRIPTS -->
     <!-- ========================================================================= -->
     <script>
-        const FOOD_MENU = [
-            { id: 'f1', name: 'ข้าวกะเพราไก่ไข่ดาว', price: 45, category: 'อาหาร', img: 'https://images.unsplash.com/photo-1626804475297-41609ea004eb?w=500&q=80', desc: 'เมนูยอดฮิต รสจัดจ้าน' },
-            { id: 'f2', name: 'ข้าวผัดหมู', price: 40, category: 'อาหาร', img: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500&q=80', desc: 'ผัดสดใหม่ หอมกลิ่นกระทะ' },
-            { id: 'f3', name: 'ก๋วยเตี๋ยวต้มยำ', price: 45, category: 'อาหาร', img: 'https://images.unsplash.com/photo-1552611052-3ba9d45c6bef?w=500&q=80', desc: 'แซ่บซี๊ด เครื่องแน่น' },
-            { id: 'f4', name: 'ข้าวมันไก่ต้ม', price: 40, category: 'อาหาร', img: 'https://images.unsplash.com/photo-1626082895617-2c6ad3ed3245?w=500&q=80', desc: 'ไก่นุ่ม ข้าวมันหอมๆ' },
-            { id: 'd1', name: 'ชานมไข่มุก', price: 35, category: 'เครื่องดื่ม', img: 'https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=500&q=80', desc: 'ไข่มุกหนึบหนับ หวานกำลังดี' },
-            { id: 'd2', name: 'ชาเขียวเย็น', price: 30, category: 'เครื่องดื่ม', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=500&q=80', desc: 'หอมกลิ่นชาแท้ ชื่นใจ' },
-            { id: 'd3', name: 'น้ำส้มคั้นสด', price: 35, category: 'เครื่องดื่ม', img: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?w=500&q=80', desc: 'วิตามินซีสูง สดชื่น' },
-            { id: 'd4', name: 'โกโก้เย็น', price: 30, category: 'เครื่องดื่ม', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80', desc: 'เข้มข้น หอมมัน' }
+        let FOOD_MENU = [
+            { id: 'f1', name: 'ข้าวกะเพราหมูสับไข่ดาว', price: 45, category: 'อาหาร', desc: 'เผ็ดจัดจ้าน ไข่ดาวเยิ้มๆ', vendor: 'ร้านป้าศรี', time: '5 นาที', img: 'https://images.unsplash.com/photo-1626804475297-41609ea004eb?w=400' },
+            { id: 'f2', name: 'ชานมไข่มุก (หวานปกติ)', price: 35, category: 'เครื่องดื่ม', desc: 'ชาหอม ไข่มุกหนึบหนับ', vendor: 'MookTea', time: '3 นาที', img: 'https://images.unsplash.com/photo-1558855567-1a424e65b90f?w=400' },
+            { id: 'f3', name: 'ข้าวผัดอเมริกัน', price: 55, category: 'อาหาร', desc: 'ไก่ทอด ไส้กรอก ไข่ดาว ครบเครื่อง', vendor: 'ครัวลุงหนุ่ม', time: '10 นาที', img: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400' },
+            { id: 'f4', name: 'ก๋วยเตี๋ยวต้มยำหมูมะนาว', price: 50, category: 'อาหาร', desc: 'รสแซ่บ มะนาวแท้', vendor: 'เจ๊หมวยเตี๋ยวต้มยำ', time: '5 นาที', img: 'https://images.unsplash.com/photo-1552611052-33e04de081de?w=400' },
+            { id: 'f5', name: 'อเมริกาโน่เย็น (ไม่หวาน)', price: 40, category: 'เครื่องดื่ม', desc: 'กาแฟคั่วกลาง หอมตาสว่าง', vendor: 'Coffee Hub', time: '2 นาที', img: 'https://images.unsplash.com/photo-1518832553480-17e9bb4ba780?w=400' },
+            { id: 'f6', name: 'ข้าวมันไก่ต้ม+ทอด', price: 50, category: 'อาหาร', desc: 'ไก่นุ่ม ข้าวมันหอม น้ำจิ้มเด็ด', vendor: 'ข้าวมันไก่นาย ก.', time: '3 นาที', img: 'https://images.unsplash.com/photo-1626804475080-60b5406c6e7a?w=400' },
+            { id: 'f7', name: 'ชาเขียวมัทฉะลาเต้', price: 45, category: 'เครื่องดื่ม', desc: 'มัทฉะแท้จากญี่ปุ่น หอมเข้มข้น', vendor: 'MookTea', time: '3 นาที', img: 'https://images.unsplash.com/photo-1582787019623-28827fa1e5cd?w=400' },
+            { id: 'f8', name: 'ผัดไทยกุ้งสด', price: 60, category: 'อาหาร', desc: 'เส้นจันท์เหนียวนุ่ม กุ้งตัวโต', vendor: 'ผัดไทยยายมา', time: '8 นาที', img: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=400' },
+            { id: 'f9', name: 'น้ำส้มคั้นสด 100%', price: 30, category: 'เครื่องดื่ม', desc: 'ส้มสายน้ำผึ้งแท้ วิตามินซีสูง', vendor: 'Freshy Juice', time: '2 นาที', img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400' },
+            { id: 'f10', name: 'ส้มตำไทยไข่เค็ม', price: 45, category: 'อาหาร', desc: 'แซ่บนัว เปรี้ยวหวานลงตัว', vendor: 'ตำมั่วแซ่บเว่อร์', time: '5 นาที', img: 'https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=400' },
+            { id: 'f11', name: 'ข้าวหมูแดงหมูกรอบ', price: 50, category: 'อาหาร', desc: 'น้ำราดสูตรโบราณ หมูกรอบฟินๆ', vendor: 'เฮียเป็ด', time: '3 นาที', img: 'https://images.unsplash.com/photo-1626804475297-41609ea004eb?w=400' },
+            { id: 'f12', name: 'นมชมพูเย็น', price: 30, category: 'เครื่องดื่ม', desc: 'หวานหอมชื่นใจ คลายร้อน', vendor: 'MookTea', time: '2 นาที', img: 'https://images.unsplash.com/photo-1558855567-1a424e65b90f?w=400' },
+            { id: 'f13', name: 'สปาเก็ตตี้คาโบนาร่า', price: 65, category: 'อาหาร', desc: 'ชีสเยิ้ม เบคอนกรอบ', vendor: 'Pasta Station', time: '10 นาที', img: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400' },
+            { id: 'f14', name: 'โกโก้ปั่น', price: 40, category: 'เครื่องดื่ม', desc: 'เข้มข้นถึงใจ ปั่นเนียนละเอียด', vendor: 'Coffee Hub', time: '4 นาที', img: 'https://images.unsplash.com/photo-1518832553480-17e9bb4ba780?w=400' },
+            { id: 'f15', name: 'ยำวุ้นเส้นหมูยอ', price: 50, category: 'อาหาร', desc: 'เปรี้ยวเผ็ดกำลังดี วุ้นเส้นเหนียวนุ่ม', vendor: 'ตำมั่วแซ่บเว่อร์', time: '5 นาที', img: 'https://images.unsplash.com/photo-1552611052-33e04de081de?w=400' }
         ];
+
+        // ---- localStorage for Food ----
+        const FOOD_DB_KEY = 'food_db';
+        function saveFoodDB() {
+            try {
+                localStorage.setItem(FOOD_DB_KEY, JSON.stringify(FOOD_MENU));
+            } catch(e) {
+                console.warn('saveFoodDB: localStorage quota exceeded', e);
+                alert('⚠️ ไม่สามารถบันทึกรูปภาพขนาดใหญ่ได้ กรุณาใช้ URL รูปภาพแทน');
+            }
+        }
+        function loadFoodDB() {
+            const d = localStorage.getItem(FOOD_DB_KEY);
+            if (d) { try { FOOD_MENU = JSON.parse(d); } catch(e) {} } else { saveFoodDB(); }
+        }
 
         let foodCart = [];
         let foodOrders = [];
@@ -2946,13 +3341,38 @@
     <!-- ART SCRIPTS -->
     <!-- ========================================================================= -->
     <script>
-        const ART_PRODUCTS = [
-            { id: 'a1', name: 'ภาพวาดสีน้ำทิวทัศน์ (ภูเขา)', price: 450, category: 'ภาพวาดพร้อมส่ง', type: 'buy', author: 'น้องเอม ม.5', img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=500&q=80', desc: 'ภาพวาดสีน้ำบนกระดาษร้อยปอนด์ ขนาด A4 พร้อมกรอบไม้ เหมาะสำหรับตกแต่งห้อง' },
-            { id: 'a2', name: 'รับวาดรูปโปรไฟล์สไตล์มินิมอล', price: 150, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'นัท ม.6', img: 'https://images.unsplash.com/photo-1525926476821-df621a69b76c?w=500&q=80', desc: 'รับวาดรูปคนครึ่งตัว สไตล์มินิมอล ส่งงานเป็นไฟล์ JPEG/PNG ความละเอียดสูง' },
-            { id: 'a3', name: 'พวงกุญแจเรซิ่นดอกไม้แห้ง', price: 59, category: 'แฮนเมด', type: 'buy', author: 'ชมรมศิลปะประดิษฐ์', img: 'https://images.unsplash.com/photo-1610531500331-bdaee0f75e23?w=500&q=80', desc: 'พวงกุญแจเรซิ่นใส ใส่ดอกไม้แห้งแท้ คละสี สามารถสั่งทำตัวอักษรใส่ด้านในได้' },
-            { id: 'a4', name: 'รับออกแบบโลโก้/ป้ายไวนิล', price: 300, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'ทีมกราฟิก รร.', img: 'https://images.unsplash.com/photo-1626785773985-f463c6397262?w=500&q=80', desc: 'รับออกแบบป้ายไวนิล โลโก้ร้านค้า โปสเตอร์กิจกรรม แก้ไขงานได้ 3 ครั้ง' },
-            { id: 'a5', name: 'ตุ๊กตาไหมพรมถักมือ', price: 120, category: 'แฮนเมด', type: 'buy', author: 'พี่พลอย ม.6', img: 'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=500&q=80', desc: 'ตุ๊กตาถักไหมพรมรูปสัตว์ต่างๆ น่ารัก นุ่มนิ่ม งานปราณีตทุกชิ้น' }
+        let ART_PRODUCTS = [
+            { id: 'a1', name: 'ภาพวาดสีน้ำทิวทัศน์ (ภูเขา)', price: 450, category: 'ภาพวาดพร้อมส่ง', type: 'buy', author: 'น้องเอม ม.5', desc: 'สีน้ำบนกระดาษ 300 แกรม ขนาด A4 เหมาะสำหรับใส่กรอบแต่งห้อง', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400' },
+            { id: 'a2', name: 'รับวาดภาพเหมือนสีไม้ (ครึ่งตัว)', price: 350, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'พี่เต้ ม.6', desc: 'วาดด้วยสีไม้คุณภาพสูง ขนาด A4 ส่งรูปชัดๆ มาให้วาดได้เลย ใช้เวลา 3-5 วัน', img: 'https://images.unsplash.com/photo-1580136608260-4eb11f4b24fe?w=400' },
+            { id: 'a3', name: 'เซ็ตสติ๊กเกอร์ไดคัท น้องแมว', price: 45, category: 'แฮนเมด', type: 'buy', author: 'มิ้นท์ ม.4', desc: 'สติ๊กเกอร์เนื้อ PVC กันน้ำ ลายแมวอ้วน 10 ลาย', img: 'https://images.unsplash.com/photo-1572375992501-4b0892d50c69?w=400' },
+            { id: 'a4', name: 'ภาพสีอะคริลิค Abstract', price: 600, category: 'ภาพวาดพร้อมส่ง', type: 'buy', author: 'อาร์ตคลับ', desc: 'บนแคนวาสขนาด 30x40 ซม. แต่งห้องสไตล์โมเดิร์น', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400' },
+            { id: 'a5', name: 'รับวาดตัวการ์ตูน Chibi', price: 150, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'ยูริ ม.5', desc: 'รับวาดตัวละคร SD น่ารักๆ ไว้ตั้งเป็นโปรไฟล์ (ไฟล์ Digital)', img: 'https://images.unsplash.com/photo-1578301978693-85fa9c026f49?w=400' },
+            { id: 'a6', name: 'โปสการ์ดภาพถ่ายเมืองเชียงใหม่', price: 30, category: 'แฮนเมด', type: 'buy', author: 'ชมรมถ่ายภาพ', desc: 'พิมพ์ลงบนกระดาษอาร์ตการ์ด 250 แกรม', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400' },
+            { id: 'a7', name: 'พวงกุญแจเรซิ่น ดอกไม้แห้ง', price: 80, category: 'แฮนเมด', type: 'buy', author: 'แนน ม.4', desc: 'เคลือบเรซิ่นใส ใส่ดอกไม้แห้งสีพาสเทล', img: 'https://images.unsplash.com/photo-1611077544805-021b38e040f9?w=400' },
+            { id: 'a8', name: 'ภาพวาดสีชอล์ค ดอกทานตะวัน', price: 300, category: 'ภาพวาดพร้อมส่ง', type: 'buy', author: 'น้องเอม ม.5', desc: 'สีสันสดใส ขนาด A5', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400' },
+            { id: 'a9', name: 'รับออกแบบโลโก้/ป้าย', price: 500, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'พี่เต้ ม.6', desc: 'ออกแบบด้วย Illustrator (ส่งไฟล์ Vector)', img: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400' },
+            { id: 'a10', name: 'สมุดสเก็ตช์ปกคราฟท์ วาดมือ', price: 120, category: 'แฮนเมด', type: 'buy', author: 'มิ้นท์ ม.4', desc: 'หน้าปกวาดลวดลายไม่ซ้ำกัน กระดาษถนอมสายตา', img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400' },
+            { id: 'a11', name: 'ภาพวาดดิจิทัล Cityscape', price: 400, category: 'ภาพวาดพร้อมส่ง', type: 'buy', author: 'อาร์ตคลับ', desc: 'พิมพ์ลงบนแคนวาส ขนาด 40x60 ซม.', img: 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400' },
+            { id: 'a12', name: 'รับเพ้นท์เสื้อยืด/กระเป๋า', price: 250, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'ยูริ ม.5', desc: 'นำเสื้อหรือกระเป๋ามาให้เพ้นท์ได้ สีไม่ตก', img: 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?w=400' },
+            { id: 'a13', name: 'เทปตกแต่ง (Masking Tape) ลายออริจินัล', price: 65, category: 'แฮนเมด', type: 'buy', author: 'ชมรมศิลปะ', desc: 'ออกแบบลายเอง ความยาว 5 เมตร', img: 'https://images.unsplash.com/photo-1572375992501-4b0892d50c69?w=400' },
+            { id: 'a14', name: 'ภาพสีน้ำมัน ทะเลกลางคืน', price: 850, category: 'ภาพวาดพร้อมส่ง', type: 'buy', author: 'ครูสมปอง', desc: 'ผลงานจากอาจารย์หมวดศิลปะ ขนาด 50x50 ซม.', img: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400' },
+            { id: 'a15', name: 'รับปั้นดินเบา (Figure)', price: 450, category: 'รับวาด/สั่งทำ', type: 'brief', author: 'แนน ม.4', desc: 'ปั้นฟิกเกอร์ตัวการ์ตูน สูง 10 ซม.', img: 'https://images.unsplash.com/photo-1611077544805-021b38e040f9?w=400' }
         ];
+
+        // ---- localStorage for Art ----
+        const ART_DB_KEY = 'art_db';
+        function saveArtDB() {
+            try {
+                localStorage.setItem(ART_DB_KEY, JSON.stringify(ART_PRODUCTS));
+            } catch(e) {
+                console.warn('saveArtDB: localStorage quota exceeded, keeping original image.', e);
+                alert('⚠️ ไม่สามารถบันทึกรูปภาพขนาดใหญ่ได้ กรุณาใช้ URL รูปภาพแทน หรืออัปโหลดรูปขนาดเล็กกว่า');
+            }
+        }
+        function loadArtDB() {
+            const d = localStorage.getItem(ART_DB_KEY);
+            if (d) { try { ART_PRODUCTS = JSON.parse(d); } catch(e) {} } else { saveArtDB(); }
+        }
 
         let artBriefs = []; // Store user's commissions
         let artCart = [];
@@ -3365,7 +3785,11 @@
 
                     // 4. บันทึกคำตอบใหม่ลงใน Cache
                     botCache[cacheKey] = reply;
-                    localStorage.setItem('botChatCache', JSON.stringify(botCache));
+                    try {
+                        localStorage.setItem('botChatCache', JSON.stringify(botCache));
+                    } catch (e) {
+                        console.warn('botChatCache: localStorage quota exceeded', e);
+                    }
                 }
 
                 appendGlobalMessage('bot', reply);
@@ -3422,24 +3846,11 @@
         // Global Product Aggregator
         function getAllProducts() {
             let all = [];
-            if (typeof FOOD_MENU !== 'undefined') all = all.concat(FOOD_MENU.map(p => ({ ...p, app: 'EduBites' })));
-            if (typeof ART_PRODUCTS !== 'undefined') all = all.concat(ART_PRODUCTS.map(p => ({ ...p, app: 'ArtiCraft' })));
-            if (typeof HANDMADE_ITEMS !== 'undefined') all = all.concat(HANDMADE_ITEMS.map(p => ({ ...p, app: 'CraftyStudent' })));
-            if (typeof state !== 'undefined' && state.products) all = all.concat(state.products.map(p => ({ ...p, app: 'EduSwap' })));
-
-            const rentalCards = Array.from(document.querySelectorAll('#app-rental .item-card'));
-            rentalCards.forEach(c => {
-                const priceText = c.querySelector('.text-pink-600');
-                if (priceText) {
-                    const imgEl = c.querySelector('img');
-                    all.push({
-                        name: c.querySelector('h3') ? c.querySelector('h3').textContent : '',
-                        price: parseInt(priceText.textContent.replace(/[^0-9]/g, '')),
-                        img: imgEl ? imgEl.src : '',
-                        app: 'StyleRent (เช่า/ชม.)'
-                    });
-                }
-            });
+            if (typeof FOOD_MENU !== 'undefined') all = all.concat(FOOD_MENU.map(p => ({ ...p, app: 'EduBites', _src: 'food' })));
+            if (typeof ART_PRODUCTS !== 'undefined') all = all.concat(ART_PRODUCTS.map(p => ({ ...p, app: 'ArtiCraft', _src: 'art' })));
+            if (typeof HANDMADE_ITEMS !== 'undefined') all = all.concat(HANDMADE_ITEMS.map(p => ({ ...p, app: 'CraftyStudent', _src: 'handmade' })));
+            if (typeof state !== 'undefined' && state.products) all = all.concat(state.products.map(p => ({ ...p, app: 'EduSwap', _src: 'eduswap' })));
+            if (typeof RENTAL_ITEMS !== 'undefined') all = all.concat(RENTAL_ITEMS.map(p => ({ ...p, app: 'StyleRent', _src: 'rental' })));
             return all;
         }
 
@@ -3728,44 +4139,56 @@
     <!-- HANDMADE APP SCRIPTS -->
     <!-- ========================================================================= -->
     <script>
-        const HANDMADE_ITEMS = [
-            {
-                id: 'hm1',
-                name: 'สมุดโน้ตปกหนังทำมือ (Handbound)',
-                price: 159,
-                highlight: 'เย็บกี่ด้วยด้ายเทียน กางสมุดได้ 180 องศา ทนทาน กระดาษถนอมสายตา',
-                maker: 'ภูมิ ม.5 (ชมรมรักการอ่าน)',
-                story: 'เริ่มต้นจากการที่ผมชอบจดบันทึก แต่หาสมุดที่กางเขียนได้เรียบๆ ยากมาก เลยเริ่มศึกษาวิธีเย็บเล่มสมุดด้วยตัวเองทาง Youtube ลองผิดลองถูกจนได้สูตรการเย็บกี่ด้วยด้ายเทียนที่แข็งแรงทนทาน หวังว่าสมุดเล่มนี้จะช่วยให้เพื่อนๆ จดสรุปบทเรียนได้สนุกขึ้นครับ',
-                img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=80'
-            },
-            {
-                id: 'hm2',
-                name: 'เทียนหอมอโรม่า ไขถั่วเหลือง 100%',
-                price: 89,
-                highlight: 'ผลิตจาก Soy Wax ธรรมชาติ ไร้ควันดำ กลิ่นผสมผสานช่วยผ่อนคลายความเครียดตอนอ่านหนังสือ',
-                maker: 'น้ำฝน & แจน ม.6 (สายวิทย์)',
-                story: 'พวกเราเครียดกับการอ่านหนังสือสอบมาก เลยลองนำความรู้จากการทดลองในห้องเคมีมาประยุกต์ทำเทียนหอมออร์แกนิก เราใช้ไขถั่วเหลืองแทนพาราฟินเพื่อให้ปลอดภัยต่อการสูดดม กลิ่น Lavender & Mint ช่วยให้หัวโล่งและมีสมาธิมากขึ้นค่ะ',
-                img: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=600&q=80'
-            },
-            {
-                id: 'hm3',
-                name: 'กระเป๋าผ้าแคนวาสเพ้นท์มือ',
-                price: 250,
-                highlight: 'ลวดลายเพ้นท์มือชิ้นเดียวในโลก ใช้สีเพ้นท์ผ้าอย่างดี ซักได้สีไม่ตก',
-                maker: 'น้องมุก ม.4 (ศิลป์-ภาษา)',
-                story: 'หนูชอบวาดรูปเล่นในเวลาว่าง เลยลองเอาทักษะนี้มาเพ้นท์ลงกระเป๋าผ้าแคนวาสให้เพื่อนๆ ในกลุ่มใช้ ปรากฏว่ามีคนชอบเยอะเลยเริ่มทำขาย ลายส่วนใหญ่ได้แรงบันดาลใจมาจากธรรมชาติและสัตว์เลี้ยงค่ะ',
-                img: 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?w=600&q=80'
-            },
-            {
-                id: 'hm4',
-                name: 'พวงกุญแจไหมพรมถัก (Amigurumi)',
-                price: 65,
-                highlight: 'งานถักโครเชต์แน่นละเอียด นุ่มนิ่ม ซักทำความสะอาดได้',
-                maker: 'พี่มายด์ ม.6',
-                story: 'ตอนเด็กๆ คุณยายสอนถักโครเชต์ พอโตขึ้นก็เลยใช้เวลาว่างช่วงปิดเทอมมานั่งถักพวงกุญแจรูปสัตว์น่ารักๆ เป็นการฝึกสมาธิที่ดีมาก ทุกชิ้นถักด้วยความตั้งใจ ห้อยกระเป๋านักเรียนแล้วน่ารักสุดๆ ค่ะ',
-                img: 'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=600&q=80'
-            }
+        let RENTAL_ITEMS = [
+            { id: 'r1', name: 'ชุดราตรีสีแดงหรูหรา', price: 50, category: 'ชุดราตรี', desc: 'เนื้อผ้ากำมะหยี่ เข้ารูป', owner: 'Mina M.5', img: 'https://images.unsplash.com/photo-1566160983984-7a387532bd77?w=400' },
+            { id: 'r2', name: 'ชุดสูทสีกรมท่า', price: 80, category: 'ชุดสูท/ทักซิโด้', desc: 'ทรงสลิมฟิต พร้อมเนคไท', owner: 'Max M.6', img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400' },
+            { id: 'r3', name: 'ชุดไทยสไบเฉียง', price: 60, category: 'ชุดไทย', desc: 'สไบลูกไม้สีชมพู ผ้าถุงสำเร็จ', owner: 'Ploy M.4', img: 'https://images.unsplash.com/photo-1621252179027-94459d278660?w=400' },
+            { id: 'r4', name: 'ชุดมาสคอตหมีบราวน์', price: 100, category: 'ชุดแฟนซี', desc: 'ใส่แล้วน่ารักนุ่มนิ่ม', owner: 'Nut M.5', img: 'https://images.unsplash.com/photo-1565012586221-50346387d838?w=400' },
+            { id: 'r5', name: 'ชุดเดรสสั้นสีพาสเทล', price: 40, category: 'ชุดราตรี', desc: 'เหมาะสำหรับงานพรอม', owner: 'Jane M.6', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400' },
+            { id: 'r6', name: 'ทักซิโด้สีขาว', price: 120, category: 'ชุดสูท/ทักซิโด้', desc: 'สำหรับพิธีกรงานโรงเรียน', owner: 'Krit M.6', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400' },
+            { id: 'r7', name: 'ชุดไทยประยุกต์ รัชกาลที่ ๕', price: 80, category: 'ชุดไทย', desc: 'เสื้อลูกไม้แขนพอง พร้อมโจงกระเบน', owner: 'May M.5', img: 'https://images.unsplash.com/photo-1621252179027-94459d278660?w=400' },
+            { id: 'r8', name: 'ชุดแฮร์รี่ พอตเตอร์', price: 70, category: 'ชุดแฟนซี', desc: 'มีไม้กายสิทธิ์และผ้าพันคอ', owner: 'Boy M.4', img: 'https://images.unsplash.com/photo-1618944847023-38aa001235f0?w=400' },
+            { id: 'r9', name: 'ชุดราตรีปักเลื่อมสีเงิน', price: 90, category: 'ชุดราตรี', desc: 'โดดเด่นสะดุดตาบนเวที', owner: 'Mint M.5', img: 'https://images.unsplash.com/photo-1566160983984-7a387532bd77?w=400' },
+            { id: 'r10', name: 'เบลเซอร์สไตล์เกาหลี', price: 50, category: 'ชุดสูท/ทักซิโด้', desc: 'ใส่คลุมเท่ๆ สไตล์มินิมอล', owner: 'Ken M.6', img: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=400' },
+            { id: 'r11', name: 'ชุดนางนพมาศ', price: 150, category: 'ชุดไทย', desc: 'จัดเต็มเครื่องประดับ', owner: 'Ann M.6', img: 'https://images.unsplash.com/photo-1621252179027-94459d278660?w=400' },
+            { id: 'r12', name: 'ชุดสไปเดอร์แมน', price: 60, category: 'ชุดแฟนซี', desc: 'ยืดหยุ่นดี ใส่สบาย', owner: 'Leo M.4', img: 'https://images.unsplash.com/photo-1565012586221-50346387d838?w=400' },
+            { id: 'r13', name: 'ชุดราตรีเกาะอกสีน้ำเงิน', price: 60, category: 'ชุดราตรี', desc: 'สีน้ำเงินเข้ม ขับผิว', owner: 'Fah M.5', img: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400' },
+            { id: 'r14', name: 'สูทสีน้ำตาลวินเทจ', price: 70, category: 'ชุดสูท/ทักซิโด้', desc: 'สำหรับงานธีมเรโทร', owner: 'Tom M.5', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400' },
+            { id: 'r15', name: 'ชุดไดโนเสาร์เป่าลม', price: 120, category: 'ชุดแฟนซี', desc: 'ฮาแน่นอน สร้างสีสันในงาน', owner: 'Mick M.6', img: 'https://images.unsplash.com/photo-1618944847023-38aa001235f0?w=400' }
         ];
+
+        let HANDMADE_ITEMS = [
+            { id: 'hm1', name: 'สมุดโน้ตปกหนังทำมือ (Handbound)', price: 159, highlight: 'เย็บกี่ด้วยด้ายเทียน กางสมุดได้ 180 องศา', maker: 'ภูมิ ม.5', story: 'ชอบจดบันทึกเลยทำสมุดเอง', img: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=400' },
+            { id: 'hm2', name: 'เทียนหอมอโรม่า ไขถั่วเหลือง', price: 89, highlight: 'Soy Wax 100% ไร้ควันดำ', maker: 'น้ำฝน ม.6', story: 'คลายเครียดตอนสอบ', img: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400' },
+            { id: 'hm3', name: 'กระเป๋าผ้าแคนวาสเพ้นท์มือ', price: 250, highlight: 'ชิ้นเดียวในโลก ลายไม่ซ้ำ', maker: 'น้องมุก ม.4', story: 'ชอบวาดรูป', img: 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?w=400' },
+            { id: 'hm4', name: 'พวงกุญแจไหมพรมถัก (Amigurumi)', price: 65, highlight: 'งานถักละเอียด นุ่มนิ่ม', maker: 'พี่มายด์ ม.6', story: 'ยายสอนถัก', img: 'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=400' },
+            { id: 'hm5', name: 'สบู่ก้อนออร์แกนิก ขมิ้นชัน', price: 45, highlight: 'ลดสิวผิวใส ทำจากธรรมชาติ', maker: 'ภูมิ ม.5', story: 'ลองทำสบู่ใช้เองแล้วดี', img: 'https://images.unsplash.com/photo-1600857062241-98e5dba7f214?w=400' },
+            { id: 'hm6', name: 'สร้อยข้อมือหินนำโชค', price: 120, highlight: 'ร้อยเองกับมือ หินแท้', maker: 'น้ำฝน ม.6', story: 'ชอบเครื่องประดับ', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400' },
+            { id: 'hm7', name: 'ที่คั่นหนังสือเรซิ่น ทะเล', price: 50, highlight: 'ลวดลายคลื่นทะเล สวยงาม', maker: 'น้องมุก ม.4', story: 'ชอบเรซิ่น', img: 'https://images.unsplash.com/photo-1611077544805-021b38e040f9?w=400' },
+            { id: 'hm8', name: 'ตุ๊กตาผ้าสักหลาด ห้อยกระเป๋า', price: 55, highlight: 'เย็บมือทั้งชิ้น ทนทาน', maker: 'พี่มายด์ ม.6', story: 'ชอบทำของกุ๊กกิ๊ก', img: 'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=400' },
+            { id: 'hm9', name: 'เคสมือถือเพ้นท์ลาย ดอกไม้', price: 150, highlight: 'เคลือบเรซิ่นทับ สีไม่หลุด', maker: 'ภูมิ ม.5', story: 'เปลี่ยนเคสบ่อยเลยทำเอง', img: 'https://images.unsplash.com/photo-1601593346740-925612772716?w=400' },
+            { id: 'hm10', name: 'ลิปบาล์ม ขี้ผึ้งธรรมชาติ', price: 35, highlight: 'ปากไม่แห้งแตก ปลอดภัย', maker: 'น้ำฝน ม.6', story: 'ปากแห้งเลยหาวิธีแก้', img: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=400' },
+            { id: 'hm11', name: 'กระถางปูนเปลือย แคคตัส', price: 40, highlight: 'หล่อเอง สไตล์ลอฟท์', maker: 'น้องมุก ม.4', story: 'ชอบปลูกต้นไม้', img: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400' },
+            { id: 'hm12', name: 'สายคล้องแมส ลูกปัดสีพาสเทล', price: 25, highlight: 'น่ารัก น้ำหนักเบา', maker: 'พี่มายด์ ม.6', story: 'ทำแจกเพื่อนแล้วชอบ', img: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400' },
+            { id: 'hm13', name: 'หมวกไหมพรม บักเก็ต', price: 180, highlight: 'ไหมพรมคอตตอน ไม่ร้อน', maker: 'ภูมิ ม.5', story: 'หัดถักใบใหญ่', img: 'https://images.unsplash.com/photo-1576426863848-c21f53c60b19?w=400' },
+            { id: 'hm14', name: 'ยาดมสมุนไพร กลิ่นส้ม', price: 30, highlight: 'หอมชื่นใจ ไม่แสบจมูก', maker: 'น้ำฝน ม.6', story: 'ทำดมเองตอนอ่านหนังสือ', img: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400' },
+            { id: 'hm15', name: 'ที่รองแก้ว ไม้ก็อกเพ้นท์ลาย', price: 40, highlight: 'ซับน้ำได้ดี ลายน่ารัก', maker: 'น้องมุก ม.4', story: 'ชอบโต๊ะเปียก', img: 'https://images.unsplash.com/photo-1622560480654-d96214fdc887?w=400' }
+        ];
+
+        // ---- localStorage for Handmade ----
+        const HANDMADE_DB_KEY = 'handmade_db';
+        function saveHandmadeDB() {
+            try {
+                localStorage.setItem(HANDMADE_DB_KEY, JSON.stringify(HANDMADE_ITEMS));
+            } catch(e) {
+                console.warn('saveHandmadeDB: localStorage quota exceeded', e);
+                alert('⚠️ ไม่สามารถบันทึกรูปภาพขนาดใหญ่ได้ กรุณาใช้ URL รูปภาพแทน');
+            }
+        }
+        function loadHandmadeDB() {
+            const d = localStorage.getItem(HANDMADE_DB_KEY);
+            if (d) { try { HANDMADE_ITEMS = JSON.parse(d); } catch(e) {} } else { saveHandmadeDB(); }
+        }
 
         let currentHandmadeItem = null;
         let handmadeCart = [];
@@ -4073,6 +4496,94 @@
     </script>
 
     <script>
+        // CLEANUP FUNCTION TO FREE UP LOCALSTORAGE
+        async function compressBase64(dataUrl) {
+            if (!dataUrl || !dataUrl.startsWith('data:image/')) return dataUrl;
+            if (dataUrl.length < 100000) return dataUrl; // Skip if already small
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = function() {
+                    const maxW = 600;
+                    const scale = img.width > maxW ? maxW / img.width : 1;
+                    const canvas = document.createElement('canvas');
+                    canvas.width = Math.round(img.width * scale);
+                    canvas.height = Math.round(img.height * scale);
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    resolve(canvas.toDataURL('image/webp', 0.8));
+                };
+                img.onerror = () => resolve(dataUrl);
+                img.src = dataUrl;
+            });
+        }
+
+        async function cleanupLocalStorageQuota() {
+            try {
+                let changed = false;
+                
+                // Compress Global DB
+                if (state && state.products) {
+                    for (let i = 0; i < state.products.length; i++) {
+                        if (state.products[i].img && state.products[i].img.length > 100000) {
+                            state.products[i].img = await compressBase64(state.products[i].img);
+                            changed = true;
+                        }
+                    }
+                    if (changed) saveGlobalDB();
+                }
+                
+                // Compress Art
+                if (typeof ART_PRODUCTS !== 'undefined') {
+                    let artChanged = false;
+                    for (let i = 0; i < ART_PRODUCTS.length; i++) {
+                        if (ART_PRODUCTS[i].img && ART_PRODUCTS[i].img.length > 100000) {
+                            ART_PRODUCTS[i].img = await compressBase64(ART_PRODUCTS[i].img);
+                            artChanged = true;
+                        }
+                    }
+                    if (artChanged) saveArtDB();
+                }
+                
+                // Compress Food
+                if (typeof FOOD_MENU !== 'undefined') {
+                    let foodChanged = false;
+                    for (let i = 0; i < FOOD_MENU.length; i++) {
+                        if (FOOD_MENU[i].img && FOOD_MENU[i].img.length > 100000) {
+                            FOOD_MENU[i].img = await compressBase64(FOOD_MENU[i].img);
+                            foodChanged = true;
+                        }
+                    }
+                    if (foodChanged) saveFoodDB();
+                }
+                
+                // Compress Rental
+                if (typeof RENTAL_ITEMS !== 'undefined') {
+                    let rentalChanged = false;
+                    for (let i = 0; i < RENTAL_ITEMS.length; i++) {
+                        if (RENTAL_ITEMS[i].img && RENTAL_ITEMS[i].img.length > 100000) {
+                            RENTAL_ITEMS[i].img = await compressBase64(RENTAL_ITEMS[i].img);
+                            rentalChanged = true;
+                        }
+                    }
+                    if (rentalChanged) saveRentalDB();
+                }
+                
+                // Compress Handmade
+                if (typeof HANDMADE_ITEMS !== 'undefined') {
+                    let handmadeChanged = false;
+                    for (let i = 0; i < HANDMADE_ITEMS.length; i++) {
+                        if (HANDMADE_ITEMS[i].img && HANDMADE_ITEMS[i].img.length > 100000) {
+                            HANDMADE_ITEMS[i].img = await compressBase64(HANDMADE_ITEMS[i].img);
+                            handmadeChanged = true;
+                        }
+                    }
+                    if (handmadeChanged) saveHandmadeDB();
+                }
+            } catch (e) {
+                console.error("Cleanup failed", e);
+            }
+        }
+
         // INIT ONLOAD FOR ALL APPS
         document.addEventListener('DOMContentLoaded', () => {
             // Init Portal Icons
@@ -4085,16 +4596,20 @@
             initDBListeners();
             renderView();
 
-            // Init Food App
+            // Init Food App (load from localStorage first, then render)
+            loadFoodDB();
             renderFoodGrid();
 
-            // Init Rental
+            // Init Rental (load from localStorage, renders items)
+            loadRentalDB();
             checkRentalStatus();
 
             // Init Art App
+            loadArtDB();
             renderArtGrid();
 
             // Init Handmade App
+            loadHandmadeDB();
             renderHandmadeGrid();
         });
     </script>
